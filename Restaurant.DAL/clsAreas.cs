@@ -20,7 +20,7 @@ namespace Restaurant.DAL
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
-            string Hello = "";
+            
             return dt;
         }
       
