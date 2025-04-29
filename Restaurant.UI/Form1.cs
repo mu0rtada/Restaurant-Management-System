@@ -16,5 +16,10 @@ namespace Restaurant.UI
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Label label = new Label();
+        }
     }
 }
