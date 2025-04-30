@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using System.ComponentModel;
 
 namespace Restaurant.DAL
 {
@@ -28,7 +29,7 @@ namespace Restaurant.DAL
                         if (Reader.HasRows)
                         {
                             Table.Load(Reader);
-
+                            
                         }
                     }
 
@@ -38,6 +39,36 @@ namespace Restaurant.DAL
             //Return Result
             return Table;
         }
-      
+
+        public static string GetAreaByID(int AreaID)
+        {
+            string AreaName = string.Empty;
+            //Get Function By ID
+            string Query = "select dbo.GetAreaName(@AreaID)";
+            using (SqlConnection connection = new SqlConnection(StrConnection.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, connection))
+                {
+                    connection.Open();
+                    Command.Parameters.AddWithValue("@AreaID", AreaID);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+
+                            AreaName = Reader[0].ToString();
+                        }
+                    }
+
+
+
+                }
+
+            }
+            return AreaName;
+
+        }
+
     }
 }
