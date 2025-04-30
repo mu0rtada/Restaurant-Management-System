@@ -11,20 +11,32 @@ namespace Restaurant.DAL
 {
     public class clsAreas
     {
-       public static DataTable GetAllAreas()
+        // Gets Areas (BAGHDAD)
+        public static DataTable GetAllAreas()
         {
-            DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection("your_connection_string"))
+            DataTable Table = new DataTable();
+
+            string Query = "SP_GetAllAreas";
+            using (SqlConnection Connection = new SqlConnection(StrConnection.ConnectionString))
             {
-               
-                conn.Open();
-                StrongTypingException strongTypingException = new StrongTypingException();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Areas", conn);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.HasRows)
+                        {
+                            Table.Load(Reader);
+
+                        }
+                    }
+
+                }
+
             }
-            
-            return dt;
+            //Return Result
+            return Table;
         }
       
     }
