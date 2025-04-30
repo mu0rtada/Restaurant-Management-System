@@ -18,7 +18,7 @@ namespace Restaurant.DAL
             DataTable Table = new DataTable();
 
             string Query = "SP_GetAllAreas";
-            using (SqlConnection Connection = new SqlConnection(StrConnection.ConnectionString))
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
                 using (SqlCommand Command = new SqlCommand(Query, Connection))
                 {
@@ -45,7 +45,7 @@ namespace Restaurant.DAL
             string AreaName = string.Empty;
             //Get Function By ID
             string Query = "select dbo.GetAreaName(@AreaID)";
-            using (SqlConnection connection = new SqlConnection(StrConnection.ConnectionString))
+            using (SqlConnection connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
                 using (SqlCommand Command = new SqlCommand(Query, connection))
                 {

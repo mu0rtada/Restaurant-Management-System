@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using System.Configuration;
 namespace Restaurant.DAL
 {
-    public class StrConnection
+    public class StrConnectionSetting
     {
         //Connection DataBase 
         public static string ConnectionString =
-        ConfigurationManager.ConnectionStrings["ConnectionSTR"].ConnectionString;
+        ConfigurationManager.ConnectionStrings["ConnectionStr"].ConnectionString;
     }
 }
