@@ -129,6 +129,11 @@ namespace Restaurant.DAL
             return IsFound;
         }
 
+
+        //Get Table By ID
+
+
+
     }
 }
 
