@@ -1,167 +1,159 @@
-﻿// Data Access Layer class for handling user-related operations
-using Restaurant.DAL;
-using System.Data.SqlClient;
+﻿using System;
 using System.Data;
-using System;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 
-public class clsUsersDL
+namespace Restaurant.DAL
 {
-    // Get all active users from a view
-    public static DataTable GetUsersActive()
+    public class clsUsersDL
     {
-        string Query = "Select * from View_UsersActive";
-        DataTable Table = new DataTable();
-        using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+        public static async Task<DataTable> GetUsersActiveAsync()
         {
-            using (SqlCommand Command = new SqlCommand(Query, Connection))
+            string Query = "Select * from View_UsersActive";
+            DataTable Table = new DataTable();
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
-                Connection.Open();
-                SqlDataReader Reade = Command.ExecuteReader();
-                Table.Load(Reade); // Load results into DataTable
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    await Connection.OpenAsync();
+                    SqlDataReader Reader = await Command.ExecuteReaderAsync();
+                    Table.Load(Reader);
+                }
             }
+            return Table;
         }
-        return Table;
-    }
 
-    // Get all inactive users from a view
-    public static DataTable GetUsers_Not_active()
-    {
-        string Query = "Select * from View_Users_Not_active";
-        DataTable Table = new DataTable();
-        using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+        public static async Task<DataTable> GetUsers_Not_activeAsync()
         {
-            using (SqlCommand Command = new SqlCommand(Query, Connection))
+            string Query = "Select * from View_Users_Not_active";
+            DataTable Table = new DataTable();
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
-                Connection.Open();
-                SqlDataReader Reade = Command.ExecuteReader();
-                Table.Load(Reade); // Load results into DataTable
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    await Connection.OpenAsync();
+                    SqlDataReader Reader = await Command.ExecuteReaderAsync();
+                    Table.Load(Reader);
+                }
             }
+            return Table;
         }
-        return Table;
-    }
 
-    // Add a new user using stored procedure (SP_InsertUser)
-    public static int AddNewUser(string UserName, string Password, int Person, byte Role)
-    {
-        int RowsAffected = 0;
-        string Query = "SP_InsertUser";
-
-        using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+        public static async Task<int> AddNewUserAsync(string UserName, string Password, int Person, byte Role)
         {
-            using (SqlCommand Command = new SqlCommand(Query, Connection))
+            int RowsAffected = 0;
+            string Query = "SP_InsertUser";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
-                Connection.Open();
-                SqlTransaction Transaction = Connection.BeginTransaction(); // Begin transaction
+                await Connection.OpenAsync();
+                SqlTransaction Transaction = Connection.BeginTransaction();
                 try
                 {
-                    Command.CommandType = CommandType.StoredProcedure;
-                    Command.Transaction = Transaction;
-                    Command.Parameters.AddWithValue("@UserName", UserName);
-                    Command.Parameters.AddWithValue("@Password", Password);
-                    Command.Parameters.AddWithValue("@PersonID", Person);
-                    Command.Parameters.AddWithValue("@Role", Role);
-                    RowsAffected = Command.ExecuteNonQuery(); // Execute insert
-                    Transaction.Commit(); // Commit changes
+                    using (SqlCommand Command = new SqlCommand(Query, Connection, Transaction))
+                    {
+                        Command.CommandType = CommandType.StoredProcedure;
+                        Command.Parameters.AddWithValue("@UserName", UserName);
+                        Command.Parameters.AddWithValue("@Password", Password);
+                        Command.Parameters.AddWithValue("@PersonID", Person);
+                        Command.Parameters.AddWithValue("@Role", Role);
+                        RowsAffected = await Command.ExecuteNonQueryAsync();
+                    }
+                    Transaction.Commit();
                 }
                 catch
                 {
-                    Transaction.Rollback(); // Rollback if error
+                    Transaction.Rollback();
                     throw;
                 }
             }
+            return RowsAffected;
         }
-        return RowsAffected;
-    }
 
-    // Update the password for a user using SP
-    public static Boolean UpdatePasswordUser(int UserID, string NewPassword)
-    {
-        int RowsAffected = 0;
-        string Query = "SP_ChangePassword";
-        using (SqlConnection connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+        public static async Task<bool> UpdatePasswordUserAsync(int UserID, string NewPassword)
         {
-            using (SqlCommand Command = new SqlCommand(Query, connection))
+            int RowsAffected = 0;
+            string Query = "SP_ChangePassword";
+            using (SqlConnection connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
-                connection.Open();
-                Command.CommandType = CommandType.StoredProcedure;
-                Command.Parameters.AddWithValue("@UserID", UserID);
-                Command.Parameters.AddWithValue("@NewPassword", NewPassword);
-                RowsAffected = Command.ExecuteNonQuery(); // Execute update
-            }
-        }
-        return RowsAffected > 0; // Return true if update succeeded
-    }
-
-    // Delete a user by ID using stored procedure
-    public static Boolean DeleteUser(int UserID)
-    {
-        int RowsAffected = 0;
-        string Query = "SP_DeleteUser";
-        using (SqlConnection connection = new SqlConnection(StrConnectionSetting.ConnectionString))
-        {
-            using (SqlCommand Command = new SqlCommand(Query, connection))
-            {
-                connection.Open();
-                SqlTransaction Transaction = connection.BeginTransaction(); // Begin transaction
-                try
+                using (SqlCommand Command = new SqlCommand(Query, connection))
                 {
+                    await connection.OpenAsync();
                     Command.CommandType = CommandType.StoredProcedure;
-                    Command.Transaction = Transaction;
                     Command.Parameters.AddWithValue("@UserID", UserID);
-                    RowsAffected = Command.ExecuteNonQuery(); // Execute delete
-                    Transaction.Commit(); // Commit changes
+                    Command.Parameters.AddWithValue("@NewPassword", NewPassword);
+                    RowsAffected = await Command.ExecuteNonQueryAsync();
+                }
+            }
+            return RowsAffected > 0;
+        }
+
+        public static async Task<bool> DeleteUserAsync(int UserID)
+        {
+            int RowsAffected = 0;
+            string Query = "SP_DeleteUser";
+            using (SqlConnection connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                await connection.OpenAsync();
+                SqlTransaction Transaction = connection.BeginTransaction();
+                try
+                {
+                    using (SqlCommand Command = new SqlCommand(Query, connection, Transaction))
+                    {
+                        Command.CommandType = CommandType.StoredProcedure;
+                        Command.Parameters.AddWithValue("@UserID", UserID);
+                        RowsAffected = await Command.ExecuteNonQueryAsync();
+                    }
+                    Transaction.Commit();
                 }
                 catch
                 {
-                    Transaction.Rollback(); // Rollback if error
+                    Transaction.Rollback();
                     throw;
                 }
             }
+            return RowsAffected > 0;
         }
-        return RowsAffected > 0; // Return true if deletion succeeded
-    }
 
-    // Check if a user exists by ID using a SQL function
-    public static Boolean IsUserExist(int UserID)
-    {
-        Boolean IsFound = false;
-        string Query = "select dbo.CheckUserExists(@UserID)";
-        using (SqlConnection connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+        public static async Task<bool> IsUserExistAsync(int UserID)
         {
-            using (SqlCommand Command = new SqlCommand(Query, connection))
+            bool IsFound = false;
+            string Query = "select dbo.CheckUserExists(@UserID)";
+            using (SqlConnection connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
-                connection.Open();
-                Command.Parameters.AddWithValue("@UserID", UserID);
-                object Result = Command.ExecuteScalar(); // Execute function
-                if (Result != null)
+                using (SqlCommand Command = new SqlCommand(Query, connection))
                 {
-                    IsFound = Convert.ToBoolean(Result); // Convert result to boollllll
+                    await connection.OpenAsync();
+                    Command.Parameters.AddWithValue("@UserID", UserID);
+                    object Result = await Command.ExecuteScalarAsync();
+                    if (Result != null)
+                    {
+                        IsFound = Convert.ToBoolean(Result);
+                    }
                 }
             }
+            return IsFound;
         }
-        return IsFound;
-    }
 
-    // Check if the given password exists for the user
-    public static Boolean IsPasswordExists(int UserID, string Password)
-    {
-        Boolean IsFound = false;
-        string Query = "select dbo.CheckPasswordExists(@UserID,@Password)";
-        using (SqlConnection connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+        public static async Task<bool> IsPasswordExistsAsync(int UserID, string Password)
         {
-            using (SqlCommand Command = new SqlCommand(Query, connection))
+            bool IsFound = false;
+            string Query = "select dbo.CheckPasswordExists(@UserID,@Password)";
+            using (SqlConnection connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
-                connection.Open();
-                Command.Parameters.AddWithValue("@UserID", UserID);
-                Command.Parameters.AddWithValue("@Password", Password);
-                object Result = Command.ExecuteScalar(); // Execute function
-                if (Result != null)
+                using (SqlCommand Command = new SqlCommand(Query, connection))
                 {
-                    IsFound = Convert.ToBoolean(Result); // Convert result to bool!
+                    await connection.OpenAsync();
+                    Command.Parameters.AddWithValue("@UserID", UserID);
+                    Command.Parameters.AddWithValue("@Password", Password);
+                    object Result = await Command.ExecuteScalarAsync();
+                    if (Result != null)
+                    {
+                        IsFound = Convert.ToBoolean(Result);
+                    }
                 }
             }
+            return IsFound;
         }
-
-        return IsFound;
     }
 }
