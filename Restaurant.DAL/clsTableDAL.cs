@@ -12,22 +12,42 @@ namespace Restaurant.DAL
     public class clsTableDAL
     {
         //Get All Tables By View 
-        public static async Task<DataTable>GetTables()
+        public static async Task<DataTable> GetTables()
         {
             DataTable Table = new DataTable();
             string Query = "select * from View_Tables";
-            using(SqlConnection Connection=new SqlConnection(StrConnectionSetting.ConnectionString))
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
-                using (SqlCommand Command=new SqlCommand(Query,Connection))
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
                 {
                     await Connection.OpenAsync();
                     SqlDataReader Reader = await Command.ExecuteReaderAsync();
                     Table.Load(Reader);
-                  
-                }    
+
+                }
             }
             return Table;
         }
+        //Get All Tables Available SQL Stored Procedure
+        public static async Task<DataTable> GetAvailableTables()
+        {
+            DataTable Table = new DataTable();
+            string Query = "SP_GetAllAvailableTables";
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Command.CommandType = CommandType.StoredProcedure;
+                    await Connection.OpenAsync();
+                    SqlDataReader Reader = await Command.ExecuteReaderAsync();
+                    Table.Load(Reader);
+                }
+            }
+            return Table;
+        }
+
+
+
         //Add New Table
         public static async Task<int> AddNewTable(string TableName, int TableCapacity)
         {
@@ -57,5 +77,56 @@ namespace Restaurant.DAL
             }
             return RowsAffected;
         }
+        //Update Status Table 
+        public static async Task<int> UpdateTableStatus(int TableID, byte TableStatus)
+        {
+            int RowsAffected = 0;
+            string Query = "SP_UpdateTableStatus";
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                await Connection.OpenAsync();
+                SqlTransaction Transaction = Connection.BeginTransaction();
+                try
+                {
+                    using (SqlCommand Command = new SqlCommand(Query, Connection, Transaction))
+                    {
+                        Command.CommandType = CommandType.StoredProcedure;
+                        Command.Parameters.AddWithValue("@TableID", TableID);
+                        Command.Parameters.AddWithValue("@Status", TableStatus);
+                        RowsAffected = await Command.ExecuteNonQueryAsync();
+                        Transaction.Commit();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Transaction.Rollback();
+                    throw ex;
+                }
+            }
+            return RowsAffected;
+        }
+
+        //Get Available Tables By TableID
+        public static async Task<Boolean> IsTableAvailable(int TableID)
+        {
+            bool IsFound = false;
+            string Query = "select dbo.GetAvailableTables(@TableID)";
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                await Connection.OpenAsync();
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Command.Parameters.AddWithValue("@TableID", TableID);
+                    object result = await Command.ExecuteScalarAsync();
+                    if (result != DBNull.Value)
+                    {
+                        IsFound = Convert.ToBoolean(result);
+                    }
+                }
+
+            }
+            return IsFound;
+        }
     }
 }
+
