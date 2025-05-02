@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="clsAreasDL.cs" />
     <Compile Include="clsPeopleDAL.cs" />
+    <Compile Include="clsTableDAL.cs" />
     <Compile Include="clsUsersDL.cs" />
     <Compile Include="StrConnectionSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
