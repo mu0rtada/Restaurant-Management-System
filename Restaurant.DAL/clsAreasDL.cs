@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Restaurant.DAL
 {
-    public class clsAreas
+    public class clsAreasDL
     {
         // Gets Areas (BAGHDAD)
         public static DataTable GetAllAreas()

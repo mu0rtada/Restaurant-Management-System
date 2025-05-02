@@ -42,8 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsAreas.cs" />
-    <Compile Include="StrConnection.cs" />
+    <Compile Include="clsAreasDL.cs" />
+    <Compile Include="clsUsersDL.cs" />
+    <Compile Include="StrConnectionSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
