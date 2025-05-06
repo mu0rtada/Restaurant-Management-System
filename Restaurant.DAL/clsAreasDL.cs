@@ -12,7 +12,10 @@ namespace Restaurant.DAL
 {
     public class clsAreasDL
     {
-        // Gets Areas (BAGHDAD)
+        /// <summary>
+        /// Gets Areas (BAGHDAD)
+        /// </summary>
+     
         public static DataTable GetAllAreas()
         {
             DataTable Table = new DataTable();

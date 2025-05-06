@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsAreasDL.cs" />
-    <Compile Include="clsPeopleDAL.cs" />
-    <Compile Include="clsTableDAL.cs" />
+    <Compile Include="clsOrderItemDL.cs" />
+    <Compile Include="clsPeopleDL.cs" />
+    <Compile Include="clsReservationDL.cs" />
+    <Compile Include="clsTableDL.cs" />
     <Compile Include="clsUsersDL.cs" />
     <Compile Include="StrConnectionSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

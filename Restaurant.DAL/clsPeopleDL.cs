@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Restaurant.DAL
 {
-    public class clsPeopleDAL
+    public class clsPeopleDL
     {
-        // Get all people from a view
+        /// <summary>
+        /// Get all people from a view
+        /// </summary>
+      
         public static async Task <DataTable> GetPeopleActive()
         {
             string Query = "select * from View_People order by PersonID";
@@ -24,7 +27,10 @@ namespace Restaurant.DAL
             }
             return Table;
         }
-  
+  /// <summary>
+  /// Add New Person Info
+  /// </summary>
+
         public static async Task<int> AddNewPerson(string FirstName, string LastName, 
             int Age, byte Gendor, int AreaID
             ,byte PersonType,string ImagePath)
@@ -63,7 +69,11 @@ namespace Restaurant.DAL
             return RowsAffected;
         }
 
-        // Update an existing person using stored procedure (SP_UpdatePerson)
+        /// <summary>
+        /// Update an existing person using 
+        /// stored procedure (SP_UpdatePerson)
+        /// </summary>
+
         public static async Task<int> UpdatePerson(int PersonID, string FirstName, string LastName,
              int AreaID
             , byte PersonType, string ImagePath)
@@ -100,7 +110,10 @@ namespace Restaurant.DAL
             return RowsAffected;
         }
 
-        // Delete a person by ID using stored procedure (SP_DeletePerson)
+        /// <summary>
+        /// Delete a person by ID using stored procedure (SP_DeletePerson)
+        /// </summary>
+
         public static async Task<Boolean> DeletePerson(int PersonID)
         {
             int RowsAffected = 0;
@@ -117,7 +130,10 @@ namespace Restaurant.DAL
             }
             return RowsAffected > 0; // Return true if delete succeeded
         }
-        // Get Function FullName Person By ID (GetFullNamePerson)
+        /// <summary>
+        /// Get Function FullName Person By ID (GetFullNamePerson)
+        /// </summary>
+
 
         public static async Task<string> GetFullNamePersonByID(int PersonID)
         {
@@ -140,7 +156,10 @@ namespace Restaurant.DAL
                 return FullName; // Return full name
 
         }
-        //Get Exitst for person by ID
+        /// <summary>
+        /// Get Exitst for person by ID
+        /// </summary>
+
         public static async Task<Boolean>IsPersonExists(int PersonID)
         {
             bool IsFound = false;

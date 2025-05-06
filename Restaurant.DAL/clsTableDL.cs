@@ -9,7 +9,7 @@ using System.Web;
 
 namespace Restaurant.DAL
 {
-    public class clsTableDAL
+    public class clsTableDL
     {
         //Get All Tables By View 
         public static async Task<DataTable> GetTables()
