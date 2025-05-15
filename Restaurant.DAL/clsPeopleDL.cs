@@ -62,7 +62,7 @@ namespace Restaurant.DAL
                     catch (Exception ex)
                     {
                         Transaction.Rollback(); // Rollback transaction on error
-                        throw ex; // Rethrow the exception
+                        throw ; // Rethrow the exception
                     }
                 }
             }
@@ -103,7 +103,7 @@ namespace Restaurant.DAL
                     catch (Exception ex)
                     {
                         Transaction.Rollback(); // Rollback transaction on error
-                        throw ex; // Rethrow the exception
+                        throw ; // Rethrow the exception
                     }
                 }
             }
