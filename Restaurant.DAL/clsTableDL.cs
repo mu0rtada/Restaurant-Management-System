@@ -78,7 +78,7 @@ namespace Restaurant.DAL
             return RowsAffected;
         }
         //Update Status Table 
-        public static async Task<int> UpdateTableStatus(int TableID, byte TableStatus)
+        public static async Task<bool> UpdateTableStatus(int TableID, byte TableStatus)
         {
             int RowsAffected = 0;
             string Query = "SP_UpdateTableStatus";
@@ -103,7 +103,7 @@ namespace Restaurant.DAL
                     throw ex;
                 }
             }
-            return RowsAffected;
+            return RowsAffected>0;
         }
 
         //Get Available Tables By TableID

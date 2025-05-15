@@ -43,7 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsAreasDL.cs" />
+    <Compile Include="clsMenuCategoriesDL.cs" />
+    <Compile Include="clsMenuItemsDL.cs" />
     <Compile Include="clsOrderItemDL.cs" />
+    <Compile Include="clsOrdersDL.cs" />
     <Compile Include="clsPeopleDL.cs" />
     <Compile Include="clsReservationDL.cs" />
     <Compile Include="clsTableDL.cs" />
