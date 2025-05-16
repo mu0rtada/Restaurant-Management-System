@@ -57,6 +57,7 @@ namespace Restaurant.DAL
                     try
                     {
                         Command.CommandType = CommandType.StoredProcedure;
+                        Command.Transaction = Transaction;
 
                         // Add parameters to the stored procedure
                         Command.Parameters.AddWithValue("@TableID", TableID);

@@ -62,6 +62,8 @@ namespace Restaurant.DAL
                     using (SqlCommand Command = new SqlCommand(Query, Connection, Transaction))
                     {
                         Command.CommandType = CommandType.StoredProcedure;
+                        Command.Transaction = Transaction;
+
                         Command.Parameters.AddWithValue("@TableName", TableName);
                         Command.Parameters.AddWithValue("@TableCapacity", TableCapacity);
                         Command.Parameters.AddWithValue("@TableStatus", 1);

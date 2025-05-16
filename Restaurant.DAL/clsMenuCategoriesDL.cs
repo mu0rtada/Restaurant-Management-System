@@ -22,6 +22,7 @@ namespace Restaurant.DAL
                 {
                     using (SqlCommand Command = new SqlCommand(Query, Connection, Transaction))
                     {
+                        Command.Transaction = Transaction;
                         Command.CommandType = CommandType.StoredProcedure;
                       Command.Parameters.AddWithValue("@CategoryName", CategoryName);
                         

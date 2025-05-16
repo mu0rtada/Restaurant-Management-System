@@ -61,6 +61,7 @@ namespace Restaurant.DAL
                     using (SqlCommand Command = new SqlCommand(Query, Connection, Transaction))
                     {
                         Command.CommandType = CommandType.StoredProcedure;
+                        Command.Transaction = Transaction;
                         Command.Parameters.AddWithValue("@UserName", UserName);
                         Command.Parameters.AddWithValue("@Password", Password);
                         Command.Parameters.AddWithValue("@PersonID", Person);
@@ -118,6 +119,7 @@ namespace Restaurant.DAL
                 {
                     using (SqlCommand Command = new SqlCommand(Query, connection, Transaction))
                     {
+                        Command.Transaction = Transaction;
                         Command.CommandType = CommandType.StoredProcedure;
                         Command.Parameters.AddWithValue("@UserID", UserID);
 
