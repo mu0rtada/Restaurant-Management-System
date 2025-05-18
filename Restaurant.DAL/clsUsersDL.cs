@@ -7,7 +7,10 @@ namespace Restaurant.DAL
 {
     public class clsUsersDL
     {
-        // Retrieves all active users from the database view
+        /// <summary>
+        /// Retrieves all active users from the database view
+        /// </summary>
+       
         public static async Task<DataTable> GetUsersActiveAsync()
         {
             string Query = "Select * from View_UsersActive";
@@ -26,7 +29,10 @@ namespace Restaurant.DAL
             return Table;
         }
 
-        // Retrieves all inactive users from the database view
+        /// <summary>
+        /// Retrieves all inactive users from the database view
+        /// </summary>
+    
         public static async Task<DataTable> GetUsers_Not_activeAsync()
         {
             string Query = "Select * from View_Users_Not_active";
@@ -45,7 +51,10 @@ namespace Restaurant.DAL
             return Table;
         }
 
-        // Inserts a new user using a stored procedure and transaction
+        /// <summary>
+        /// Inserts a new user using a stored procedure and transaction
+        /// </summary>
+
         public static async Task<int> AddNewUserAsync(string UserName, string Password, int Person, byte Role)
         {
             int RowsAffected = 0;
@@ -82,7 +91,10 @@ namespace Restaurant.DAL
             return RowsAffected;
         }
 
-        // Updates the password of a user using a stored procedure
+        /// <summary>
+        /// Updates the password of a user using a stored procedure
+        /// </summary>
+  
         public static async Task<bool> UpdatePasswordUserAsync(int UserID, string NewPassword)
         {
             int RowsAffected = 0;
@@ -104,7 +116,10 @@ namespace Restaurant.DAL
             return RowsAffected > 0; // Return true if update succeeded
         }
 
-        // Deletes a user using a stored procedure and transaction
+        /// <summary>
+        /// Deletes a user using a stored procedure and transaction
+        /// </summary>
+
         public static async Task<bool> DeleteUserAsync(int UserID)
         {
             int RowsAffected = 0;
@@ -138,7 +153,10 @@ namespace Restaurant.DAL
             return RowsAffected > 0;
         }
 
-        // Checks if a user exists by calling a scalar function
+        /// <summary>
+        /// Checks if a user exists by calling a scalar function
+        /// </summary>
+
         public static async Task<bool> IsUserExistAsync(int UserID)
         {
             bool IsFound = false;
@@ -162,7 +180,10 @@ namespace Restaurant.DAL
             return IsFound;
         }
 
-        // Checks if the given password exists for the specified user
+        /// <summary>
+        /// Checks if the given password exists for the specified user
+        /// </summary>
+ 
         public static async Task<bool> IsPasswordExistsAsync(int UserID, string Password)
         {
             bool IsFound = false;
@@ -187,7 +208,10 @@ namespace Restaurant.DAL
             return IsFound;
         }
 
-        // Gets the role text (e.g., Admin, Staff) for the user
+        /// <summary>
+        /// Gets the role text (e.g., Admin, Staff) for the user
+        /// </summary>
+
         public static async Task<string> GetRoleUserText(int UserID)
         {
             string RoleText = string.Empty;

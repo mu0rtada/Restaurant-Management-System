@@ -42,6 +42,9 @@ namespace Restaurant.DAL
             //Return Result
             return Table;
         }
+        /// <summary>
+        /// GetArea Name 
+        /// </summary>
 
         public static string GetAreaByID(int AreaID)
         {

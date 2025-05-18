@@ -85,7 +85,7 @@ namespace Restaurant.DAL
                         RowsAffected = await Command.ExecuteNonQueryAsync();
                     }
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     throw ;
                 }
