@@ -16,7 +16,7 @@ namespace Restaurant.DAL
         /// Gets Areas (BAGHDAD)
         /// </summary>
      
-        public static DataTable GetAllAreas()
+        public static async Task <DataTable> GetAllAreas()
         {
             DataTable Table = new DataTable();
 
@@ -25,7 +25,7 @@ namespace Restaurant.DAL
             {
                 using (SqlCommand Command = new SqlCommand(Query, Connection))
                 {
-                Connection.Open();
+               await Connection.OpenAsync();
                     Command.CommandType = CommandType.StoredProcedure;
                     using (SqlDataReader Reader = Command.ExecuteReader())
                     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -31,38 +32,45 @@ namespace Restaurant.DAL
   /// Add New Person Info
   /// </summary>
 
-        public static async Task<int> AddNewPerson(string FirstName, string LastName, 
-            int Age, byte Gendor, int AreaID
+        public static async  Task<int?> AddNewPerson(string FirstName, string LastName, 
+            int Age, byte Gendor, int AreaID,string Email
             ,byte PersonType,string ImagePath)
         {
-            int RowsAffected = 0;
+            int? RowsAffected = 0;
             string Query = "SP_InsertPerson";
             using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
                 using (SqlCommand Command = new SqlCommand(Query, Connection))
                 {
                    await Connection.OpenAsync();
-                    SqlTransaction Transaction = Connection.BeginTransaction(); // Begin transaction
-                    try
+                    using (SqlTransaction Transaction = Connection.BeginTransaction())// Begin transaction
                     {
-                        Command.CommandType = CommandType.StoredProcedure;
-                        Command.Transaction = Transaction;
-                        Command.Parameters.AddWithValue("@FirstName", FirstName);
-                        Command.Parameters.AddWithValue("@LastName", LastName);
-                        Command.Parameters.AddWithValue("@Age", Age);
-                        Command.Parameters.AddWithValue("@Gendor", Gendor);
-                        Command.Parameters.AddWithValue("@AreaID", AreaID);
-                        Command.Parameters.AddWithValue("@PersonType", PersonType);
-                        Command.Parameters.AddWithValue("@ImagePath", ImagePath);
-                        // Execute the command and get the number of rows affected
+                        try
+                        {
+                            Command.CommandType = CommandType.StoredProcedure;
+                            Command.Transaction = Transaction;
+                            Command.Parameters.AddWithValue("@FirstName", FirstName);
+                            Command.Parameters.AddWithValue("@LastName", LastName);
+                            Command.Parameters.AddWithValue("@Age", Age);
+                            Command.Parameters.AddWithValue("@Gendor", Gendor);
+                            Command.Parameters.AddWithValue("@AreaID", AreaID);
+                            Command.Parameters.AddWithValue("@Email",(object) Email??DBNull.Value);
+                            Command.Parameters.AddWithValue("@PersonType", PersonType);
+                            Command.Parameters.AddWithValue("@ImagePath", (object)ImagePath??DBNull.Value);
+                            // Execute the command and get the number of rows affected
 
-                        RowsAffected =await Command.ExecuteNonQueryAsync();
-                        Transaction.Commit(); // Commit transaction
-                    }
-                    catch (Exception ex)
-                    {
-                        Transaction.Rollback(); // Rollback transaction on error
-                        throw ; // Rethrow the exception
+                            object Result = await Command.ExecuteScalarAsync();
+                            if(Result!=null&&int.TryParse(Result.ToString(),out int ID))
+                            {
+                                RowsAffected = ID;
+                            }
+                            Transaction.Commit(); // Commit transaction
+                        }
+                        catch (Exception)
+                        {
+                            Transaction.Rollback(); // Rollback transaction on error
+                            throw; // Rethrow the exception
+                        }
                     }
                 }
             }
@@ -74,7 +82,7 @@ namespace Restaurant.DAL
         /// stored procedure (SP_UpdatePerson)
         /// </summary>
 
-        public static async Task<int> UpdatePerson(int PersonID, string FirstName, string LastName,
+        public static async Task<bool> UpdatePerson(int? PersonID, string FirstName, string LastName,
              int AreaID
             , byte PersonType, string ImagePath)
         {
@@ -85,29 +93,31 @@ namespace Restaurant.DAL
                 using (SqlCommand Command = new SqlCommand(Query, Connection))
                 {
                    await Connection.OpenAsync();
-                    SqlTransaction Transaction = Connection.BeginTransaction(); // Begin transaction
-                    try
+                    using (SqlTransaction Transaction = Connection.BeginTransaction()) // Begin transaction
                     {
-                        Command.CommandType = CommandType.StoredProcedure;
-                        Command.Transaction = Transaction;
-                        Command.Parameters.AddWithValue("@PersonID", PersonID);
-                        Command.Parameters.AddWithValue("@FirstName", FirstName);
-                        Command.Parameters.AddWithValue("@LastName", LastName);
-                        Command.Parameters.AddWithValue("@AreaID", AreaID);
-                        Command.Parameters.AddWithValue("@PersonType", PersonType);
-                        Command.Parameters.AddWithValue("@ImagePath", ImagePath);
-                        // Execute the command and get the number of rows affected
-                        RowsAffected =await Command.ExecuteNonQueryAsync();
-                        Transaction.Commit(); // Commit transaction
-                    }
-                    catch (Exception ex)
-                    {
-                        Transaction.Rollback(); // Rollback transaction on error
-                        throw ; // Rethrow the exception
+                        try
+                        {
+                            Command.CommandType = CommandType.StoredProcedure;
+                            Command.Transaction = Transaction;
+                            Command.Parameters.AddWithValue("@PersonID", PersonID);
+                            Command.Parameters.AddWithValue("@FirstName", FirstName);
+                            Command.Parameters.AddWithValue("@LastName", LastName);
+                            Command.Parameters.AddWithValue("@AreaID", AreaID);
+                            Command.Parameters.AddWithValue("@PersonType", PersonType);
+                            Command.Parameters.AddWithValue("@ImagePath",(object) ImagePath??DBNull.Value);
+                            // Execute the command and get the number of rows affected
+                            RowsAffected = await Command.ExecuteNonQueryAsync();
+                            Transaction.Commit(); // Commit transaction
+                        }
+                        catch (Exception )
+                        {
+                            Transaction.Rollback(); // Rollback transaction on error
+                            throw; // Rethrow the exception
+                        }
                     }
                 }
             }
-            return RowsAffected;
+            return RowsAffected>0;
         }
 
         /// <summary>
@@ -135,7 +145,7 @@ namespace Restaurant.DAL
         /// </summary>
 
 
-        public static async Task<string> GetFullNamePersonByID(int PersonID)
+        public static string GetFullNamePersonByID(int PersonID)
         {
             string FullName = string.Empty;
             string Query = "select dbo.GetFullNamePerson(@PersonID)";
@@ -143,9 +153,9 @@ namespace Restaurant.DAL
             {
                 using (SqlCommand Command = new SqlCommand(Query, Connection))
                 {
-                    await Connection.OpenAsync();
+                     Connection.Open();
                     Command.Parameters.AddWithValue("@PersonID", PersonID);
-                    object Result = await Command.ExecuteScalarAsync(); // Execute the query
+                    object Result =  Command.ExecuteScalar(); // Execute the query
                     if (Result != DBNull.Value)
                     {
                         FullName = Result.ToString(); // Convert result to string

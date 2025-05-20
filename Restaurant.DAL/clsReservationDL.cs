@@ -13,7 +13,7 @@ namespace Restaurant.DAL
         public static async Task<DataTable> GetAllReservation()
         {
             DataTable Table = new DataTable();
-            string Query = "View_GetAllReservation";
+            string Query = "select * from View_GetAllReservation";
             using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
                 using (SqlCommand Command = new SqlCommand(Query, Connection))

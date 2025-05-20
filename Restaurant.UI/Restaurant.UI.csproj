@@ -46,16 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsValidation.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.ar.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -65,6 +78,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -84,6 +98,321 @@
       <Project>{a81f21f0-a21a-4075-bbd3-d300a62bd60a}</Project>
       <Name>Restaurant.BLL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\دائرة.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3d-calendar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3d-map1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3d-notes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10_borrow book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\13_delivering books.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barcode1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bibliophile1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\biography1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book %281%292.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book %281%2911.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book %281%2921.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book %282%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookworm-high-resolution-logo-transparent %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookworm-high-resolution-logo-transparent %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boss1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dashboard %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dashboard1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editor2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editor11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\employee1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\female1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fine2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fine11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gmail1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\id1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\id-card %282%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\id-card11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information-pamphlet1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Knowledge-cuate1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\learning-tools1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\librarian1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\library.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\library-card1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout %281%292.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout %281%2911.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\male1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\man2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\man11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\navigation1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\online-library1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open-book %281%292.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open-book %281%2911.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open-book1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\overdue1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\padlock2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\padlock11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\payment2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\payment11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\penalty %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\penalty1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\power1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profit %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quill1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quill-pen %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quill-pen1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservation %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservation1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\return.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\return1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right-arrow1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search-file1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skill1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stack-of-books2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stack-of-books11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\staff1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\student-card1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\study %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\study1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\team1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\time-management %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\time-management1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\title1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-avatar %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wave1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\woman1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\writer %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yes-or-no1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
