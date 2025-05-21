@@ -33,7 +33,7 @@ namespace Restaurant.DAL
   /// </summary>
 
         public static async  Task<int?> AddNewPerson(string FirstName, string LastName, 
-            int Age, byte Gendor, int AreaID,string Email
+            int? Age, byte? Gendor, int? AreaID,string Email
             ,byte? PersonType,string ImagePath)
         {
             int? RowsAffected = 0;
@@ -87,7 +87,7 @@ namespace Restaurant.DAL
         /// </summary>
 
         public static async Task<bool> UpdatePerson(int? PersonID, string FirstName, string LastName,
-             int AreaID
+             int? AreaID
             , byte? PersonType, string ImagePath)
         {
             int RowsAffected = 0;
@@ -196,6 +196,95 @@ namespace Restaurant.DAL
                         if (Reader.Read())
                         {
                             IsFound = true;
+                            FirstName = (string)Reader["FirstName"];
+                            LastName = (string)Reader["LastName"];
+                            Age = (int)Reader["Age"];
+                            Gendor = (byte)Reader["Gendor"];
+                            AreaID = (int)Reader["AreaID"];
+                            Email = (string)Reader["Email"];
+                            PersonType = (byte)Reader["PersonType"];
+                            ImagePath = (string)Reader["Imagepath"];
+
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
+        }
+        public static bool GetPersonInfoByName
+            (  string FirstName,ref int? PersonID, ref
+            string LastName, ref int? Age
+            , ref byte? Gendor, ref int? AreaID,
+           ref string Email, ref byte? PersonType,
+          ref string ImagePath)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetPersonInfoByName";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@FirstName", FirstName);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+                            IsFound = true;
+                            PersonID = (int)Reader["PersonID"];
+                            FirstName = (string)Reader["FirstName"];
+                            LastName = (string)Reader["LastName"];
+                            Age = (int)Reader["Age"];
+                            Gendor = (byte)Reader["Gendor"];
+                            AreaID = (int)Reader["AreaID"];
+                            Email = (string)Reader["Email"];
+                            PersonType = (byte)Reader["PersonType"];
+                            ImagePath = (string)Reader["Imagepath"];
+
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
+        }
+
+        public static bool GetPersonInfoByEmail
+           (string Email,ref int ?PersonID,ref string FirstName, ref
+           string LastName, ref int? Age
+           , ref byte? Gendor, ref int? AreaID
+            , ref byte? PersonType,
+         ref string ImagePath)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetPersonInfoByEmail";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@Email", Email);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+                            IsFound = true;
+                            PersonID = (int)Reader["PersonID"];
                             FirstName = (string)Reader["FirstName"];
                             LastName = (string)Reader["LastName"];
                             Age = (int)Reader["Age"];

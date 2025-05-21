@@ -46,7 +46,7 @@ namespace Restaurant.DAL
         /// GetArea Name 
         /// </summary>
 
-        public static string GetAreaByID(int AreaID)
+        public static string GetAreaByID(int? AreaID)
         {
             string AreaName = string.Empty;
             //Get Function By ID

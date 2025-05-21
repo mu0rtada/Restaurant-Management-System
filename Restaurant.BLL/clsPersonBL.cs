@@ -14,9 +14,9 @@ namespace Restaurant.BLL
         public int? PersonID { get; set; }
         public string FirstName {  get; set; }
         public string LastName { get; set; }
-        public int Age {  get; set; }
-        public byte Gendor { get; set; } = 0;
-        public int AreaID { get; set; }
+        public int? Age {  get; set; }
+        public byte? Gendor { get; set; } = 0;
+        public int? AreaID { get; set; }
         public string Email { get; set; }
         public clsAreasBL AreaInfo { get; set; }
        public byte? PersonType { get; set; }
@@ -61,8 +61,8 @@ namespace Restaurant.BLL
         }
 
         public clsPersonBL(int? personID, string firstName,
-            string lastName, int age, byte gendor,
-            int areaID,string Email, byte personType, string imagePath)
+            string lastName, int? age, byte? gendor,
+            int? areaID,string Email, byte? personType, string imagePath)
         {
             this.PersonID = personID;
             this.FirstName = firstName;
@@ -73,8 +73,8 @@ namespace Restaurant.BLL
             this.Email = Email;
             this.PersonType = personType;
             this.ImagePath = imagePath;
-           _Mode=enModeEdit.UpdatePerson;
           this.AreaInfo= clsAreasBL.FindAreaByID(areaID);
+           _Mode=enModeEdit.UpdatePerson;
           
         }
 
@@ -122,26 +122,68 @@ namespace Restaurant.BLL
                 ref PersonType,ref ImagePath);
 
             if (ISFound)
-                return new clsPersonBL(PersonID, FirstName, LastName, 13, 1, 1, "fd", 1, "C");
+                return new clsPersonBL(PersonID, FirstName, LastName,
+                    Age,Gendor,AreaID,Email,PersonType,
+                    ImagePath);
+            else
+                return null;
+        }
+       /// <summary>
+       /// Find By <paramref name="FullName"/> Person
+       /// </summary>
+
+
+        public clsPersonBL Find(string FirstName)
+        {
+            int? PersonID = null;
+            string LastName = null;
+            int? Age = null;
+            byte? Gendor = null;
+            int? AreaID = null;
+            string Email = null;
+            byte? PersonType = null;
+            string ImagePath = null;
+
+            bool ISFound = clsPeopleDL.GetPersonInfoByName(FirstName,
+                ref PersonID, ref LastName, ref Age,
+                ref Gendor, ref AreaID, ref Email,
+                ref PersonType, ref ImagePath);
+
+            if (ISFound)
+                return new clsPersonBL(PersonID, FirstName, LastName,
+                                   Age, Gendor, AreaID, Email, PersonType,
+                                   ImagePath);
             else
                 return null;
         }
         /// <summary>
-        /// Find By <paramref name="FullName"/> Person
+        /// Find By person type
         /// </summary>
-       
-        //public clsPersonBL Find(string FullName)
-        //{
-        //    string FirstName = null;
-        //    string LastName = null;
+        /// <param name="PersonType"></param>
+        /// <returns></returns>
+        public clsPersonBL FindEmail(string Email)
+        {
+            int? PersonID = null;
+            string FirstName = null;
+            string LastName = null;
+            int? Age = null;
+            byte? Gendor = null;
+            int? AreaID = null;
+            string ImagePath = null;
+            byte? PersonType = null;
+            bool ISFound = clsPeopleDL.GetPersonInfoByEmail
+                (Email,ref PersonID,ref FirstName,
+                ref LastName, ref Age,
+                ref Gendor, ref AreaID,
+                ref PersonType, ref ImagePath);
 
-        //    bool ISFound = clsPeopleDL.GetPersonInfoByID(PersonID, ref FirstName, ref LastName);
-
-        //    if (ISFound)
-        //        return new clsPersonBL(PersonID, FirstName, LastName, 13, 1, 1, "fd", 1, "C");
-        //    else
-        //        return null;
-        //}
+            if (ISFound)
+                return new clsPersonBL(PersonID, FirstName, LastName,
+                                   Age, Gendor, AreaID, Email, PersonType,
+                                   ImagePath);
+            else
+                return null;
+        }
 
         public bool CheckAccessType(_enPersonType PersonTyp)
         {

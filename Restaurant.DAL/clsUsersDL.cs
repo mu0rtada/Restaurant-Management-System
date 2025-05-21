@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Restaurant.DAL
@@ -9,7 +8,8 @@ namespace Restaurant.DAL
     public class clsUsersDL
     {
         /// <summary>
-        /// Retrieves all active users from the database view
+        /// Retrieves all active users from 
+        /// the database view
         /// </summary>
        
         public static async Task<DataTable> GetUsersActiveAsync()
@@ -31,7 +31,8 @@ namespace Restaurant.DAL
         }
 
         /// <summary>
-        /// Retrieves all inactive users from the database view
+        /// Retrieves all inactive users
+        /// from the database view
         /// </summary>
     
         public static async Task<DataTable> GetUsers_Not_activeAsync()
@@ -53,7 +54,8 @@ namespace Restaurant.DAL
         }
 
         /// <summary>
-        /// Inserts a new user using a stored procedure and transaction
+        /// Inserts a new user using a 
+        /// stored procedure and transaction
         /// </summary>
 
         public static async Task<int?> AddNewUserAsync(string UserName, string Password, int? Person, short? Role)
@@ -75,7 +77,7 @@ namespace Restaurant.DAL
                         Command.Parameters.AddWithValue("@UserName", UserName);
                         Command.Parameters.AddWithValue("@Password", Password);
                         Command.Parameters.AddWithValue("@PersonID", Person);
-                        Command.Parameters.AddWithValue("@Role", 1);
+                        Command.Parameters.AddWithValue("@Role", Role);
 
                         object Result = Command.ExecuteScalarAsync();   // Execute insert command
                         if (Result != null && int.TryParse(Result.ToString(), out int ID))
@@ -98,7 +100,9 @@ namespace Restaurant.DAL
         }
 
         /// <summary>
-        /// Updates the password of a user using a stored procedure
+        /// Updates the password
+        /// of a user using a
+        /// stored procedure
         /// </summary>
   
         public static async Task<bool> UpdatePasswordUserAsync(int ?UserID, string NewPassword)
@@ -119,7 +123,8 @@ namespace Restaurant.DAL
                 }
             }
 
-            return RowsAffected > 0; // Return true if update succeeded
+            return RowsAffected > 0; // Return
+                                     // true if update succeeded
         }
         public static async Task<bool> UpdateRoleOrPermisstionUserAsync(int? UserID, short? Role)
         {
@@ -232,6 +237,126 @@ namespace Restaurant.DAL
             }
 
             return IsFound;
+        }
+        /// <summary>
+        /// Get user info by userid
+        /// </summary>
+        public static bool GetUserInfoByID
+          (int? UserID,ref string UserName,ref int?PersonID,short? Role)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetUserByUserID";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@UserID", UserID);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+                            IsFound = true;
+                            UserID = (int)Reader["UserID"];
+                            UserName = (string)Reader["UserName"];
+                            PersonID = (int)Reader["PersonID"];
+                            Role = (byte)Reader["Role"];
+    
+
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
+        }
+        /// <summary>
+        /// Get user info by PersonID
+        /// </summary>
+        public static bool GetUserInfoByPersonID
+          (int PersonID,ref int? UserID,
+            ref string UserName,short? Role)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetUserByPersonID";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@PersonID", PersonID);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+IsFound = true;
+UserID = (int)Reader["UserID"];
+UserName = (string)Reader["UserName"];
+PersonID = (int)Reader["PersonID"];
+Role = (byte)Reader["Role"];
+    
+
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
+        }
+        /// <summary>
+        /// Get user info by UserName
+        /// </summary>
+
+        public static bool GetUserInfoByUserName
+          (string UserName,ref int? UserID,ref int PersonID
+            ,short? Role)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetUserByUserName";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@PersonID", PersonID);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+IsFound = true;
+UserID = (int)Reader["UserID"];
+UserName = (string)Reader["UserName"];
+PersonID = (int)Reader["PersonID"];
+Role = (byte)Reader["Role"];
+    
+
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
         }
 
         /// <summary>

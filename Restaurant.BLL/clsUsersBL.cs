@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restaurant.DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
@@ -110,6 +111,17 @@ namespace Restaurant.BLL
         {
             return await Restaurant.DAL.clsUsersDL.
                 DeleteUserAsync(UserID);
+        }
+        public static async Task<Boolean> IsUserExists(int UserID, string Password)
+        {
+            return await clsUsersDL.IsUserExistAsync(UserID);
+
+        }
+
+        public static async Task<Boolean>IsPasswordExists(int UserID,string Password)
+        {
+            return await clsUsersDL.IsPasswordExistsAsync(UserID, Password);
+
         }
 
         public async Task<string>GetRoleText()

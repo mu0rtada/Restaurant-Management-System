@@ -29,15 +29,8 @@ namespace Restaurant.UI
         private  void btmSAVE_Click(object sender, EventArgs e)
         {
 
-            clsPersonBL Person = new clsPersonBL();
-            Person.Find(12);
+            clsUsersBL Users = new clsUsersBL();
 
-
-          
-            if (string.IsNullOrEmpty(Person.ImagePath))
-                label1.Text = "من كبر حتى كبر";
-            else
-                label1.Text = "عاشت الايادي";
            
             
         }

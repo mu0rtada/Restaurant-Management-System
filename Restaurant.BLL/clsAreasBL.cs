@@ -12,7 +12,7 @@ namespace Restaurant.BLL
 {
     public class clsAreasBL
     {
-        public int AreaID { get; set; }
+        public int ?AreaID { get; set; }
         public string AreaName { get;}
 
         public clsAreasBL()
@@ -20,7 +20,7 @@ namespace Restaurant.BLL
             AreaID = 0;
             AreaName = "";
         }
-        public clsAreasBL(int areaID,string AreaName)
+        public clsAreasBL(int? areaID,string AreaName)
         {
             AreaID = areaID;
             AreaName = this.AreaName;
@@ -41,7 +41,7 @@ namespace Restaurant.BLL
         /// </summary>
         /// <param name="AreaID">Area ID</param>
         
-        public  static clsAreasBL FindAreaByID(int AreaID)
+        public  static clsAreasBL FindAreaByID(int? AreaID)
         {
             
             string AreaName = "";

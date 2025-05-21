@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="clsAreasBL.cs" />
     <Compile Include="clsPersonBL.cs" />
+    <Compile Include="clsTablesBL.cs" />
     <Compile Include="clsUsersBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
