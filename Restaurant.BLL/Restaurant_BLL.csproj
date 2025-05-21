@@ -43,12 +43,13 @@
   <ItemGroup>
     <Compile Include="clsAreasBL.cs" />
     <Compile Include="clsPersonBL.cs" />
+    <Compile Include="clsUsersBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Restaurant.DAL\Restaurant.DAL.csproj">
+    <ProjectReference Include="..\Restaurant.DAL\Restaurant_DAL.csproj">
       <Project>{4c4b96db-ade3-4383-af1a-0843c793ee17}</Project>
-      <Name>Restaurant.DAL</Name>
+      <Name>Restaurant_DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35728.132 d17.12
+VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.UI", "Restaurant.UI\Restaurant.UI.csproj", "{2EB9BE93-E377-4B8E-BED2-8EC3C70AF382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.BLL", "Restaurant.BLL\Restaurant.BLL.csproj", "{A81F21F0-A21A-4075-BBD3-D300A62BD60A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant_BLL", "Restaurant.BLL\Restaurant_BLL.csproj", "{A81F21F0-A21A-4075-BBD3-D300A62BD60A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.DAL", "Restaurant.DAL\Restaurant.DAL.csproj", "{4C4B96DB-ADE3-4383-AF1A-0843C793EE17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant_DAL", "Restaurant.DAL\Restaurant_DAL.csproj", "{4C4B96DB-ADE3-4383-AF1A-0843C793EE17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

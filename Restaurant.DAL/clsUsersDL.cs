@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Restaurant.DAL
@@ -37,7 +38,7 @@ namespace Restaurant.DAL
         {
             string Query = "Select * from View_Users_Not_active";
             DataTable Table = new DataTable();
-
+            
             using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
                 using (SqlCommand Command = new SqlCommand(Query, Connection))
@@ -55,9 +56,9 @@ namespace Restaurant.DAL
         /// Inserts a new user using a stored procedure and transaction
         /// </summary>
 
-        public static async Task<int> AddNewUserAsync(string UserName, string Password, int Person, byte Role)
+        public static async Task<int?> AddNewUserAsync(string UserName, string Password, int? Person, short? Role)
         {
-            int RowsAffected = 0;
+            int? UserID = null;
             string Query = "SP_InsertUser";
 
             using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
@@ -74,9 +75,13 @@ namespace Restaurant.DAL
                         Command.Parameters.AddWithValue("@UserName", UserName);
                         Command.Parameters.AddWithValue("@Password", Password);
                         Command.Parameters.AddWithValue("@PersonID", Person);
-                        Command.Parameters.AddWithValue("@Role", Role);
+                        Command.Parameters.AddWithValue("@Role", 1);
 
-                        RowsAffected = await Command.ExecuteNonQueryAsync(); // Execute insert command
+                        object Result = Command.ExecuteScalarAsync();   // Execute insert command
+                        if (Result != null && int.TryParse(Result.ToString(), out int ID))
+                            UserID = ID;
+                        else
+                            UserID = null;
                     }
 
                     Transaction.Commit(); // Commit the transaction if success
@@ -84,18 +89,19 @@ namespace Restaurant.DAL
                 catch
                 {
                     Transaction.Rollback(); // Rollback in case of error
+                    UserID= null;
                     throw;
                 }
             }
-
-            return RowsAffected;
+            
+            return UserID;
         }
 
         /// <summary>
         /// Updates the password of a user using a stored procedure
         /// </summary>
   
-        public static async Task<bool> UpdatePasswordUserAsync(int UserID, string NewPassword)
+        public static async Task<bool> UpdatePasswordUserAsync(int ?UserID, string NewPassword)
         {
             int RowsAffected = 0;
             string Query = "SP_ChangePassword";
@@ -115,12 +121,32 @@ namespace Restaurant.DAL
 
             return RowsAffected > 0; // Return true if update succeeded
         }
+        public static async Task<bool> UpdateRoleOrPermisstionUserAsync(int? UserID, short? Role)
+        {
+            int RowsAffected = 0;
+            string Query = "SP_UpdateRole";
+
+            using (SqlConnection connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, connection))
+                {
+                    await connection.OpenAsync();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@UserID", UserID);
+                    Command.Parameters.AddWithValue("@Role", Role);
+
+                    RowsAffected = await Command.ExecuteNonQueryAsync(); // Execute update
+                }
+            }
+
+            return RowsAffected > 0; // Return true if update succeeded
+        }
 
         /// <summary>
         /// Deletes a user using a stored procedure and transaction
         /// </summary>
 
-        public static async Task<bool> DeleteUserAsync(int UserID)
+        public static async Task<bool> DeleteUserAsync(int? UserID)
         {
             int RowsAffected = 0;
             string Query = "SP_DeleteUser";
@@ -212,7 +238,7 @@ namespace Restaurant.DAL
         /// Gets the role text (e.g., Admin, Staff) for the user
         /// </summary>
 
-        public static async Task<string> GetRoleUserText(int UserID)
+        public static async Task<string> GetRoleUserText(int? UserID)
         {
             string RoleText = string.Empty;
             string Query = "select dbo.GetRoleTextUser(@UserID)";

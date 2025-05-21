@@ -19,7 +19,7 @@ namespace Restaurant.BLL
         public int AreaID { get; set; }
         public string Email { get; set; }
         public clsAreasBL AreaInfo { get; set; }
-       public byte PersonType { get; set; }
+       public byte? PersonType { get; set; }
        public string ImagePath { get; set; }
 
         public enum enModeEdit
@@ -29,17 +29,18 @@ namespace Restaurant.BLL
         }
         private enModeEdit _Mode=enModeEdit.AddPerson;
 
-       private enum _enPersonType
+       public enum _enPersonType
         {
             Admin=0,
             Customer=1,
         }
-        public _enPersonType enTypePerson
+        public _enPersonType enPersonType
         {
             get
             {
-                return this.PersonType == 1 ? _enPersonType.Customer : _enPersonType.Admin;
+                return this.PersonType == 0 ? _enPersonType.Admin : _enPersonType.Customer;
             }
+           
         }
 
         
@@ -54,7 +55,7 @@ namespace Restaurant.BLL
             Gendor = 0;
             AreaID = 0;
             Email = null;
-            PersonType = 0;
+            PersonType = null;
             ImagePath = null;
             _Mode = enModeEdit.AddPerson;
         }
@@ -97,6 +98,59 @@ namespace Restaurant.BLL
         public static async Task<bool>IsPersonExist(int PersonID)
         {
             return await clsPeopleDL.IsPersonExists(PersonID);
+        }
+        /// <summary>
+        /// Find By PersonID
+        /// </summary>
+       
+        public   clsPersonBL Find(int?PersonID)
+        {
+            string FirstName = null;
+            string LastName = null;
+            int? Age=null;
+            byte ? Gendor=null;
+            int? AreaID=null;
+            string Email=null;
+            byte? PersonType=null;
+            string ImagePath=null;
+
+
+            bool ISFound = clsPeopleDL.
+                GetPersonInfoByID(PersonID,
+                ref FirstName,ref LastName,ref Age,
+                ref Gendor,ref AreaID,ref Email,
+                ref PersonType,ref ImagePath);
+
+            if (ISFound)
+                return new clsPersonBL(PersonID, FirstName, LastName, 13, 1, 1, "fd", 1, "C");
+            else
+                return null;
+        }
+        /// <summary>
+        /// Find By <paramref name="FullName"/> Person
+        /// </summary>
+       
+        //public clsPersonBL Find(string FullName)
+        //{
+        //    string FirstName = null;
+        //    string LastName = null;
+
+        //    bool ISFound = clsPeopleDL.GetPersonInfoByID(PersonID, ref FirstName, ref LastName);
+
+        //    if (ISFound)
+        //        return new clsPersonBL(PersonID, FirstName, LastName, 13, 1, 1, "fd", 1, "C");
+        //    else
+        //        return null;
+        //}
+
+        public bool CheckAccessType(_enPersonType PersonTyp)
+        {
+            if (this.PersonType == 0)
+                return true;
+            if (((byte)PersonTyp & this.PersonType) == (short)PersonTyp)
+                return true ;
+
+            return false;
         }
        
         public  async Task<Boolean> Save()

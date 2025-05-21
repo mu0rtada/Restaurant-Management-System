@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.btmSAVE = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
+            this.btmSAVE = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -42,16 +42,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(288, 33);
             this.comboBox1.TabIndex = 4;
-            // 
-            // btmSAVE
-            // 
-            this.btmSAVE.Location = new System.Drawing.Point(376, 97);
-            this.btmSAVE.Name = "btmSAVE";
-            this.btmSAVE.Size = new System.Drawing.Size(141, 62);
-            this.btmSAVE.TabIndex = 5;
-            this.btmSAVE.Text = "btnSave";
-            this.btmSAVE.UseVisualStyleBackColor = true;
-            this.btmSAVE.Click += new System.EventHandler(this.btmSAVE_Click);
             // 
             // progressBar1
             // 
@@ -68,6 +58,16 @@
             this.label1.Size = new System.Drawing.Size(44, 16);
             this.label1.TabIndex = 7;
             this.label1.Text = "label1";
+            // 
+            // btmSAVE
+            // 
+            this.btmSAVE.Location = new System.Drawing.Point(376, 97);
+            this.btmSAVE.Name = "btmSAVE";
+            this.btmSAVE.Size = new System.Drawing.Size(141, 62);
+            this.btmSAVE.TabIndex = 5;
+            this.btmSAVE.Text = "btnSave";
+            this.btmSAVE.UseVisualStyleBackColor = true;
+            this.btmSAVE.Click += new System.EventHandler(this.btmSAVE_Click);
             // 
             // frmLogin
             // 
@@ -87,9 +87,10 @@
         }
 
         #endregion
+
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button btmSAVE;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btmSAVE;
     }
 }

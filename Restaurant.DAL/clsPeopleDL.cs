@@ -34,7 +34,7 @@ namespace Restaurant.DAL
 
         public static async  Task<int?> AddNewPerson(string FirstName, string LastName, 
             int Age, byte Gendor, int AreaID,string Email
-            ,byte PersonType,string ImagePath)
+            ,byte? PersonType,string ImagePath)
         {
             int? RowsAffected = 0;
             string Query = "SP_InsertPerson";
@@ -64,6 +64,10 @@ namespace Restaurant.DAL
                             {
                                 RowsAffected = ID;
                             }
+                            else
+                            {
+                                RowsAffected = null;
+                            }
                             Transaction.Commit(); // Commit transaction
                         }
                         catch (Exception)
@@ -84,7 +88,7 @@ namespace Restaurant.DAL
 
         public static async Task<bool> UpdatePerson(int? PersonID, string FirstName, string LastName,
              int AreaID
-            , byte PersonType, string ImagePath)
+            , byte? PersonType, string ImagePath)
         {
             int RowsAffected = 0;
             string Query = "SP_UpdatePerson";
@@ -145,6 +149,7 @@ namespace Restaurant.DAL
         /// </summary>
 
 
+
         public static string GetFullNamePersonByID(int PersonID)
         {
             string FullName = string.Empty;
@@ -166,6 +171,51 @@ namespace Restaurant.DAL
                 return FullName; // Return full name
 
         }
+
+        public static  bool GetPersonInfoByID
+            (int?PersonID,ref string FirstName,ref 
+            string LastName,ref int? Age
+            ,ref byte? Gendor,ref int? AreaID,
+           ref string Email,ref byte? PersonType,
+          ref  string ImagePath)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetPersonInfoByID";
+
+            using(SqlConnection Connection=new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using(SqlCommand Command=new SqlCommand(Query,Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@PersonID", PersonID);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+                            IsFound = true;
+                            FirstName = (string)Reader["FirstName"];
+                            LastName = (string)Reader["LastName"];
+                            Age = (int)Reader["Age"];
+                            Gendor = (byte)Reader["Gendor"];
+                            AreaID = (int)Reader["AreaID"];
+                            Email = (string)Reader["Email"];
+                            PersonType = (byte)Reader["PersonType"];
+                            ImagePath = (string)Reader["Imagepath"];
+
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
+        }
+
         /// <summary>
         /// Get Exitst for person by ID
         /// </summary>

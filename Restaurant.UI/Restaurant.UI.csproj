@@ -94,9 +94,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Restaurant.BLL\Restaurant.BLL.csproj">
+    <ProjectReference Include="..\Restaurant.BLL\Restaurant_BLL.csproj">
       <Project>{a81f21f0-a21a-4075-bbd3-d300a62bd60a}</Project>
-      <Name>Restaurant.BLL</Name>
+      <Name>Restaurant_BLL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
