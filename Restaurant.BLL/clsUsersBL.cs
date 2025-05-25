@@ -8,8 +8,10 @@ using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Dynamic;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
+using static Restaurant.BLL.clsPersonBL;
 
 namespace Restaurant.BLL
 {
@@ -26,6 +28,7 @@ namespace Restaurant.BLL
      enMode _Mode = enMode.eAdd;
 
         //Permisstion
+        [Flags]
         public enum enPermisstion
         {
             ePeople=2,
@@ -122,6 +125,15 @@ namespace Restaurant.BLL
         {
             return await clsUsersDL.IsPasswordExistsAsync(UserID, Password);
 
+        }
+        public bool CheckAccessPermission(enPermisstion permisstionRole)
+        {
+            if (this.Role == -1)
+                return true;
+            if (((short)permisstionRole & Role) == (short)permisstionRole)
+                return true;
+            
+            return false;
         }
 
         public async Task<string>GetRoleText()

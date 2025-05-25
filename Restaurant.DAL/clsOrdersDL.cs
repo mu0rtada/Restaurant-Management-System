@@ -41,8 +41,8 @@ namespace Restaurant.DAL
         /// <param name="Status">Order status (open/closed)</param>
         /// <param name="Notes">Additional notes for the order</param>
         /// <returns>The generated OrderID from the database</returns>
-        public static async Task<int> AddNewOrder(int TableID, int UserID,
-            decimal TotalAmount, bool Status, string Notes)
+        public static async Task<int> AddNewOrder(int ?TableID, int? UserID,
+            decimal? TotalAmount, bool? Status, string Notes)
         {
             int OrderID = 0;
             string Query = "SP_InsertOpenOrder";
@@ -87,7 +87,7 @@ namespace Restaurant.DAL
         /// </summary>
         /// <param name="OrderID">The ID of the order to check</param>
         /// <returns>True if paid, False otherwise</returns>
-        public static async Task<bool> IsOrderPaid(int OrderID)
+        public static async Task<bool> IsOrderPaid(int? OrderID)
         {
             bool IsPaid = false;
             string Query = "select dbo.IsOrderPaid(@OrderID)";
@@ -116,7 +116,7 @@ namespace Restaurant.DAL
         /// </summary>
         /// <param name="OrderID">The ID of the order</param>
         /// <returns>Status text of the order</returns>
-        public static async Task<string> GetStatusOrderText(int OrderID)
+        public static async Task<string> GetStatusOrderText(int? OrderID)
         {
             string StatusText = "";
             string Query = "select OrderStatus from Orders where OrderID=@OrderID";
