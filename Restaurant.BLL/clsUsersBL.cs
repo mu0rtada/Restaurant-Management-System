@@ -1,15 +1,6 @@
 ﻿using Restaurant.DAL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Design;
 using System.Data;
-using System.Data.SqlTypes;
-using System.Diagnostics;
-using System.Dynamic;
-using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Text;
 using System.Threading.Tasks;
 using static Restaurant.BLL.clsPersonBL;
 
@@ -64,17 +55,18 @@ namespace Restaurant.BLL
 
             _Mode = enMode.eAdd;
         }
-        public clsUsersBL(int? userID, string userName, string password, int? personID, clsPersonBL personInfo, short? role, bool? isActive)
+        public clsUsersBL(int? userID, string userName, string password, int? personID, short? role, bool? isActive)
         {
             UserID = userID;
             UserName = userName;
             Password = password;
             PersonID = personID;
-            
-            PersonInfo = personInfo;
-            Role = role;
+                        Role = role;
             IsActive = isActive;
             _Mode = enMode.eUpdate;
+            //find person
+            this.PersonInfo=clsPersonBL.Find(personID);
+
         }
 
         public static async Task<DataTable>GetUsers_Active()
@@ -108,6 +100,55 @@ namespace Restaurant.BLL
             return await Restaurant.DAL.clsUsersDL
                 .UpdatePasswordUserAsync
                 (UserID, NewPassword);
+        }
+
+        public static clsUsersBL Find(int?UserID)
+        {
+            int? personID = null;
+            string userName = null;
+            string password = null;
+            short? Role = null;
+            bool? isActive = null;
+            // Calls DAL to get user info by ID
+            bool isFound = clsUsersDL.GetUserInfoByID(UserID,
+                ref userName, ref personID, ref Role, ref isActive);
+            if (isFound)
+                return new clsUsersBL(UserID, userName, password,
+                    personID, Role, isActive);
+            else
+                return null;
+        }
+        public static clsUsersBL FindByUserName(string UserName)
+        {
+            int? userID = null;
+            int? personID = null;
+            string password = null;
+            short? Role = null;
+            bool? isActive = null;
+            // Calls DAL to get user info by UserName
+            bool isFound = clsUsersDL.GetUserInfoByUserName(UserName,
+                ref userID, ref personID, ref Role, ref isActive);
+            if (isFound)
+                return new clsUsersBL(userID, UserName, password,
+                    personID, Role, isActive);
+            else
+                return null;
+        }
+        public static clsUsersBL FindByPerson(int? PersonID)
+        {
+            int? userID = null;
+            string userName = null;
+            string password = null;
+            short? Role = null;
+            bool? isActive = null;
+            // Calls DAL to get user info by PersonID
+            bool isFound = clsUsersDL.GetUserInfoByPersonID(PersonID,
+                ref userID, ref userName, ref Role, ref isActive);
+            if (isFound)
+                return new clsUsersBL(userID, userName, password,
+                    PersonID, Role, isActive);
+            else
+                return null;
         }
 
         public static async Task<bool>DeleteUser(int?UserID)

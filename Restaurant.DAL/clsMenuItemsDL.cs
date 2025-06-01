@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Restaurant.DAL
@@ -31,10 +26,30 @@ namespace Restaurant.DAL
             return Table;
 
         }
-        public static async Task<int> AddNewMenuItem(string MenuItemName, string Description,
-            decimal Price, int CategoryID,string ImagePath)
+
+        public static async Task<DataTable> GetAllMenuItemsByCategoryID(int? CategoryID)
         {
-            int MenuItemID = 0;
+            DataTable Table = new DataTable();
+            string Query = "View_GetAllMenuItems where CategoryID=@CategoryID";
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                await Connection.OpenAsync();
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    SqlDataReader Reader = await Command.ExecuteReaderAsync();
+
+                    Table.Load(Reader);
+                }
+            }
+
+            return Table;
+
+        }
+
+        public static async Task<int?> AddNewMenuItem(string MenuItemName, string Description,
+            decimal ?Price, int? CategoryID,string ImagePath)
+        {
+            int? MenuItemID = null;
             string Query = "InsertMenuItem";
             using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
@@ -43,7 +58,7 @@ namespace Restaurant.DAL
                 {
                     Command.CommandType = System.Data.CommandType.StoredProcedure;
                     Command.Parameters.AddWithValue("@MenuItemName", MenuItemName);
-                    Command.Parameters.AddWithValue("@Description", Description);
+                    Command.Parameters.AddWithValue("@Description", Description??null);
                     Command.Parameters.AddWithValue("@Price", Price);
                     Command.Parameters.AddWithValue("@CategoryID", CategoryID);
                     if (string.IsNullOrEmpty(ImagePath))
@@ -54,7 +69,12 @@ namespace Restaurant.DAL
                     {
                         Command.Parameters.AddWithValue("@ImagePath", ImagePath);
                     }
-                    MenuItemID =await Command.ExecuteNonQueryAsync();
+                    object Result=await Command.ExecuteScalarAsync();
+                    if(Result!=null&&int.TryParse(Result.ToString(),out int ID))
+                        MenuItemID = ID;
+
+                    MenuItemID = null;
+
                 }
 
             }
@@ -62,8 +82,8 @@ namespace Restaurant.DAL
                 return MenuItemID;
         }
 
-        public static async Task<Boolean>UpdateMenuItem(int MenuItemID, string MenuItemName, string Description,
-            decimal Price, int CategoryID, string ImagePath)
+        public static async Task<Boolean>UpdateMenuItem(int? MenuItemID, string MenuItemName, string Description,
+            decimal? Price, int? CategoryID, string ImagePath)
         {
             int RowsAffected = 0;
             string Query = "SP_UpdateMenuItem";
@@ -90,6 +110,94 @@ namespace Restaurant.DAL
                 }
             }
             return RowsAffected > 0;
+        }
+
+        public static bool GetMenuItemInfoByID
+          (int? MenuItemID, ref string MenuItemName, ref string Description, ref decimal? Price,
+           ref int? CategoryID,ref string ImagePath)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetMenuItemByID";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@MenuItem", MenuItemID);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+                            IsFound = true;
+                            MenuItemName = (string)Reader["MenuItemName"];
+                            Description = (string)Reader["Description"];
+                            CategoryID = (int)Reader["CategoryID"];
+                            Price = (decimal)Reader["Price"];
+                            if (Reader["ImagePath"] != null)
+                                ImagePath = (string)Reader["ImagePath"];
+                            else
+                                ImagePath = null;
+
+
+
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
+        }
+
+       
+
+        public static bool GetMenuItemInfoByCategoryID
+         (int? CategoryID,ref int? MenuItemID, ref string MenuItemName, ref string Description, ref decimal? Price,
+           ref string ImagePath)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetMenuItemByID";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@MenuItem", MenuItemID);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+                            IsFound = true;
+                            MenuItemID = (int)Reader["MenuItemID"];
+                            MenuItemName = (string)Reader["MenuItemName"];
+                            Description = (string)Reader["Description"];
+                            Price = (decimal)Reader["Price"];
+                            if (Reader["ImagePath"] != null||DBNull.Value!=null)
+                                ImagePath = (string)Reader["ImagePath"];
+                            else
+                                ImagePath = null;
+
+
+
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
         }
     }
 }

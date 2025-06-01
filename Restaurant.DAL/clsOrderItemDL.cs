@@ -61,8 +61,10 @@ namespace Restaurant.DAL
                             Command.Parameters.AddWithValue("@Price", Price);
 
                             // Execute and retrieve new ID
-                            OrderItemID = Convert.ToInt32(await Command.ExecuteScalarAsync());
+                            object Result= await Command.ExecuteScalarAsync();
 
+                            if (Result != null && int.TryParse(Result.ToString(), out int ID))
+                                OrderItemID = ID;
                             // Commit transaction
                             Transaction.Commit();
                         }

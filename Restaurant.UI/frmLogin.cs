@@ -26,13 +26,16 @@ namespace Restaurant.UI
             }
         }
 
-        private  void btmSAVE_Click(object sender, EventArgs e)
+        private  async void btmSAVE_Click(object sender, EventArgs e)
         {
 
-            clsUsersBL Users = new clsUsersBL();
+            clsMenuItemsBL menuItemsBL = new clsMenuItemsBL();
+            menuItemsBL.MenuItemName = "Pepsi";
+            menuItemsBL.Description = "Added value";
+            menuItemsBL.Price = 12;
+            menuItemsBL.CategoryID = 1;
 
-           
-            
+
         }
     }
 }

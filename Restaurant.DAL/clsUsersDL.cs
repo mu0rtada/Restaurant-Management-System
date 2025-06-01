@@ -77,9 +77,9 @@ namespace Restaurant.DAL
                         Command.Parameters.AddWithValue("@UserName", UserName);
                         Command.Parameters.AddWithValue("@Password", Password);
                         Command.Parameters.AddWithValue("@PersonID", Person);
-                        Command.Parameters.AddWithValue("@Role", Role);
+                        Command.Parameters.AddWithValue("@Role", Role??null);
 
-                        object Result = Command.ExecuteScalarAsync();   // Execute insert command
+                        object Result = await Command.ExecuteScalarAsync();
                         if (Result != null && int.TryParse(Result.ToString(), out int ID))
                             UserID = ID;
                         else
@@ -242,7 +242,8 @@ namespace Restaurant.DAL
         /// Get user info by userid
         /// </summary>
         public static bool GetUserInfoByID
-          (int? UserID,ref string UserName,ref int?PersonID,short? Role)
+          (int? UserID,ref string UserName,ref int?PersonID,ref short? Role,
+           ref bool? IsActive)
         {
             bool IsFound = false;
 
@@ -264,8 +265,10 @@ namespace Restaurant.DAL
                             UserID = (int)Reader["UserID"];
                             UserName = (string)Reader["UserName"];
                             PersonID = (int)Reader["PersonID"];
-                            Role = (byte)Reader["Role"];
-    
+                            Role = (short)Reader["Role"];
+                            IsActive = (bool)Reader["IsActive"];
+
+
 
                         }
                         else
@@ -281,8 +284,8 @@ namespace Restaurant.DAL
         /// Get user info by PersonID
         /// </summary>
         public static bool GetUserInfoByPersonID
-          (int PersonID,ref int? UserID,
-            ref string UserName,short? Role)
+          (int? PersonID,ref int? UserID,
+            ref string UserName,ref short? Role,ref bool? IsActive)
         {
             bool IsFound = false;
 
@@ -305,7 +308,9 @@ UserID = (int)Reader["UserID"];
 UserName = (string)Reader["UserName"];
 PersonID = (int)Reader["PersonID"];
 Role = (byte)Reader["Role"];
-    
+                            IsActive = (bool)Reader["IsActive"];
+
+
 
                         }
                         else
@@ -322,8 +327,8 @@ Role = (byte)Reader["Role"];
         /// </summary>
 
         public static bool GetUserInfoByUserName
-          (string UserName,ref int? UserID,ref int PersonID
-            ,short? Role)
+          (string UserName, ref int? UserID, ref int? PersonID
+            ,ref short? Role, ref bool? IsActive)
         {
             bool IsFound = false;
 

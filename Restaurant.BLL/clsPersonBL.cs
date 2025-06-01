@@ -103,7 +103,7 @@ namespace Restaurant.BLL
         /// Find By PersonID
         /// </summary>
        
-        public   clsPersonBL Find(int?PersonID)
+        public  static clsPersonBL Find(int?PersonID)
         {
             string FirstName = null;
             string LastName = null;
@@ -133,7 +133,7 @@ namespace Restaurant.BLL
        /// </summary>
 
 
-        public clsPersonBL Find(string FirstName)
+        public static clsPersonBL Find(string FirstName)
         {
             int? PersonID = null;
             string LastName = null;
@@ -161,7 +161,7 @@ namespace Restaurant.BLL
         /// </summary>
         /// <param name="PersonType"></param>
         /// <returns></returns>
-        public clsPersonBL FindEmail(string Email)
+        public static clsPersonBL FindEmail(string Email)
         {
             int? PersonID = null;
             string FirstName = null;

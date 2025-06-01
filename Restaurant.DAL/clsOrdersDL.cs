@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Restaurant.DAL
@@ -32,6 +30,7 @@ namespace Restaurant.DAL
             return Table;
         }
 
+
         /// <summary>
         /// Adds a new order to the database using a stored procedure.
         /// </summary>
@@ -41,10 +40,10 @@ namespace Restaurant.DAL
         /// <param name="Status">Order status (open/closed)</param>
         /// <param name="Notes">Additional notes for the order</param>
         /// <returns>The generated OrderID from the database</returns>
-        public static async Task<int> AddNewOrder(int ?TableID, int? UserID,
+        public static async Task<int?> AddNewOrder(int ?TableID, int? UserID,
             decimal? TotalAmount, bool? Status, string Notes)
         {
-            int OrderID = 0;
+            int? OrderID = null;
             string Query = "SP_InsertOpenOrder";
 
             using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
@@ -67,7 +66,12 @@ namespace Restaurant.DAL
                         Command.Parameters.AddWithValue("@Notes", Notes);
 
                         // Execute the stored procedure and retrieve the newly inserted OrderID
-                        OrderID = Convert.ToInt32(await Command.ExecuteScalarAsync());
+
+                        object Result = await Command.ExecuteScalarAsync();
+                        if (Result != null && int.TryParse(Result.ToString(), out int ID))
+                            OrderID = ID;
+                        else
+                            OrderID = null;
 
                         Transaction.Commit(); // Commit the transaction if successful
                     }
@@ -112,6 +116,130 @@ namespace Restaurant.DAL
         }
 
         /// <summary>
+        /// Get Order Info by orderid 
+        /// </summary>
+
+        public static bool GetOrderInfoByID
+            (int? OrderID, ref int? TableID, ref
+            int? UserID, ref decimal? TotalAmount
+            , ref bool? Status, ref string Notes)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetOrderByID";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@OrderID", OrderID);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+                            IsFound = true;
+                            TableID = (int)Reader["TableID"];
+                            UserID = (int)Reader["UserID"];
+                            TotalAmount = (decimal)Reader["TotalAmount"];
+                            Status = (bool)Reader["Status"];
+                            Notes = (string)Reader["Notes"];
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
+        }
+        /// <summary>
+        /// Get Order Info by Tableid 
+        /// </summary>
+
+        public static bool GetOrderInfoByTableID
+           (int? TableID, ref int? OrderID, ref
+           int? UserID, ref decimal? TotalAmount
+           , ref bool? Status, ref string Notes)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetOrderByTableID";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@TableID", TableID);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+                            IsFound = true;
+                            OrderID = (int)Reader["OrderID"];
+                            UserID = (int)Reader["UserID"];
+                            TotalAmount = (decimal)Reader["TotalAmount"];
+                            Status = (bool)Reader["Status"];
+                            Notes = (string)Reader["Notes"];
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
+        }
+        /// <summary>
+        /// Get Order Info by Userid 
+        /// </summary>
+
+        public static bool GetOrderInfoByUserID
+          (int? UserID, ref int? OrderID, ref
+          int? TableID, ref decimal? TotalAmount
+          , ref bool? Status, ref string Notes)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetOrderByUserID";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@UserID", TableID);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+                            IsFound = true;
+                            OrderID = (int)Reader["OrderID"];
+                            TableID = (int)Reader["TableID"];
+                            TotalAmount = (decimal)Reader["TotalAmount"];
+                            Status = (bool)Reader["Status"];
+                            Notes = (string)Reader["Notes"];
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
+        }
+
+        /// <summary>
         /// Retrieves the textual status of an order (e.g. "Open", "Closed").
         /// </summary>
         /// <param name="OrderID">The ID of the order</param>
@@ -138,6 +266,9 @@ namespace Restaurant.DAL
 
             return StatusText;
         }
+
+
+
 
     }
 }
