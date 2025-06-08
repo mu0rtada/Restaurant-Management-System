@@ -28,8 +28,8 @@ namespace Restaurant.DAL
             return Table;
         }
 
-        public static async Task<int?>AddNewFeedBack(int PersonID,
-            int OrderID, byte? Rating)
+        public static async Task<int?>AddNewFeedBack(int ?PersonID,
+            int? OrderID, byte? Rating)
         {
             int? FeedID = null;
             string Query = "SP_InsertFeedBack";
@@ -49,11 +49,12 @@ namespace Restaurant.DAL
                     {
                         FeedID = Convert.ToInt32(Result);
                     }
+                    else FeedID = null;
                 }
             }
             return FeedID;
         }
-        public static async Task<Boolean>UpdateRating(int @FeedID,byte? @Rating)
+        public static async Task<Boolean>UpdateRating(int? @FeedID,byte? @Rating)
         {
             string Query = "SP_UpdateRating";
             int RowsAffected = 0;
@@ -95,5 +96,6 @@ namespace Restaurant.DAL
             }
             return RatingCount;
         }
+
     }
 }

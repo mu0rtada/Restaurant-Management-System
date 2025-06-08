@@ -91,7 +91,7 @@ namespace Restaurant.BLL
         /// Finds an order by OrderID and returns a new clsOrdersBL object if found
         /// </summary>
 
-        public clsOrdersBL Find(int? OrderID)
+        public static clsOrdersBL Find(int? OrderID)
         {
             int? TableID = null;
             int? UserID = null;
@@ -116,7 +116,7 @@ namespace Restaurant.BLL
         /// Finds an order by TableID
         /// </summary>
 
-        public clsOrdersBL FindByTable(int? TableID)
+        public static clsOrdersBL FindByTable(int? TableID)
         {
             int? OrderID = null;
             int? UserID = null;
@@ -140,7 +140,7 @@ namespace Restaurant.BLL
         /// </summary>
         /// <param name="UserID">User from User</param>
         /// <returns></returns>
-        public clsOrdersBL FindByUser(int? UserID)
+        public static clsOrdersBL FindByUser(int? UserID)
         {
             int? OrderID = null;
             int? TableID = null;

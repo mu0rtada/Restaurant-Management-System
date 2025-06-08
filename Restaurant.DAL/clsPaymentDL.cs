@@ -61,7 +61,8 @@ namespace Restaurant.DAL
                             object Result = await Command.ExecuteScalarAsync();
                             if (Result != null && Result != DBNull.Value)
                                 PaymentID = Convert.ToInt32(Result);
-
+                            else
+                                PaymentID = null;
                             Transaction.Commit(); // Commit transaction on success
                         }
                         catch (Exception)
@@ -99,5 +100,81 @@ namespace Restaurant.DAL
             return RowsAffected > 0; // Return true if update succeeded
         }
 
+        public static bool GetOrderInfoByPaymentID
+          (int? PaymentID, ref int? OrderID,
+           ref decimal? Amount, ref string PaymentMethod,
+            ref bool? IsRefounded)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetPaymentInfoByID";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@PaymentID", PaymentID);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+                            IsFound = true;
+                            OrderID = (int)Reader["OrderID"];
+                            Amount = (decimal)Reader["TableName"];
+                            PaymentMethod = (string)Reader["PaymentMethod"];
+                            IsRefounded = (bool)Reader["IsRefounded"];
+
+
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
+        }
+        public static bool GetOrderInfoByOrderID
+         (int? OrderID, ref int? PaymentID,
+           ref decimal? Amount, ref string PaymentMethod,
+            ref bool? IsRefounded)
+        {
+            bool IsFound = false;
+
+            string Query = "SP_GetPaymentInfoByOrderID";
+
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Connection.Open();
+                    Command.CommandType = CommandType.StoredProcedure;
+                    Command.Parameters.AddWithValue("@OrderID", OrderID);
+
+                    using (SqlDataReader Reader = Command.ExecuteReader())
+                    {
+                        if (Reader.Read())
+                        {
+                            IsFound = true;
+                            PaymentID = (int)Reader["PaymentID"];
+                            Amount = (decimal)Reader["TableName"];
+                            PaymentMethod = (string)Reader["PaymentMethod"];
+                            IsRefounded = (bool)Reader["IsRefounded"];
+
+
+                        }
+                        else
+                            IsFound = false;
+                    }
+                }
+            }
+            return IsFound;
+
+
+        }
     }
 }

@@ -42,11 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsAreasBL.cs" />
+    <Compile Include="clsFeedBackBL.cs" />
     <Compile Include="clsMenuCategoryBL.cs" />
     <Compile Include="clsMenuItemsBL.cs" />
     <Compile Include="clsOrderItemBL.cs" />
     <Compile Include="clsOrdersBL.cs" />
+    <Compile Include="clsPaymentBL.cs" />
     <Compile Include="clsPersonBL.cs" />
+    <Compile Include="clsReservationBL.cs" />
     <Compile Include="clsTablesBL.cs" />
     <Compile Include="clsUsersBL.cs" />
     <Compile Include="clsUsersByAI_TEST.cs" />

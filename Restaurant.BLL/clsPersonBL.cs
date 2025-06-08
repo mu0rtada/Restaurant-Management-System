@@ -34,6 +34,7 @@ namespace Restaurant.BLL
             Admin=0,
             Customer=1,
         }
+        //Hyorushima
         public _enPersonType enPersonType
         {
             get

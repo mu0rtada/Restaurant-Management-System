@@ -57,22 +57,15 @@ namespace Restaurant.DAL
                 using (SqlCommand Command = new SqlCommand(Query, Connection))
                 {
                     Command.CommandType = System.Data.CommandType.StoredProcedure;
-                    Command.Parameters.AddWithValue("@MenuItemName", MenuItemName);
-                    Command.Parameters.AddWithValue("@Description", Description??null);
+                    Command.Parameters.AddWithValue("@ItemName", MenuItemName);
+                    Command.Parameters.AddWithValue("@Description", string.IsNullOrEmpty(Description) ? DBNull.Value : (object)Description);
                     Command.Parameters.AddWithValue("@Price", Price);
-                    Command.Parameters.AddWithValue("@CategoryID", CategoryID);
-                    if (string.IsNullOrEmpty(ImagePath))
-                    {
-                        Command.Parameters.AddWithValue("@ImagePath", DBNull.Value);
-                    }
-                    else
-                    {
-                        Command.Parameters.AddWithValue("@ImagePath", ImagePath);
-                    }
+                    Command.Parameters.AddWithValue("@CategoryID", CategoryID);     
+                    Command.Parameters.AddWithValue("@ImagePath",string.IsNullOrEmpty(ImagePath)?DBNull.Value:(object)ImagePath);
                     object Result=await Command.ExecuteScalarAsync();
                     if(Result!=null&&int.TryParse(Result.ToString(),out int ID))
                         MenuItemID = ID;
-
+                    else
                     MenuItemID = null;
 
                 }
@@ -94,7 +87,7 @@ namespace Restaurant.DAL
                 {
                     Command.CommandType = System.Data.CommandType.StoredProcedure;
                     Command.Parameters.AddWithValue("@MenuItemID", MenuItemID);
-                    Command.Parameters.AddWithValue("@MenuItemName", MenuItemName);
+                    Command.Parameters.AddWithValue("@ItemName", MenuItemName);
                     Command.Parameters.AddWithValue("@Description", Description);
                     Command.Parameters.AddWithValue("@Price", Price);
                     Command.Parameters.AddWithValue("@CategoryID", CategoryID);
@@ -126,18 +119,18 @@ namespace Restaurant.DAL
                 {
                     Connection.Open();
                     Command.CommandType = CommandType.StoredProcedure;
-                    Command.Parameters.AddWithValue("@MenuItem", MenuItemID);
+                    Command.Parameters.AddWithValue("@MenuItemID", MenuItemID);
 
                     using (SqlDataReader Reader = Command.ExecuteReader())
                     {
                         if (Reader.Read())
                         {
                             IsFound = true;
-                            MenuItemName = (string)Reader["MenuItemName"];
+                            MenuItemName = (string)Reader["ItemName"];
                             Description = (string)Reader["Description"];
                             CategoryID = (int)Reader["CategoryID"];
                             Price = (decimal)Reader["Price"];
-                            if (Reader["ImagePath"] != null)
+                            if (Reader["ImagePath"] != DBNull.Value)
                                 ImagePath = (string)Reader["ImagePath"];
                             else
                                 ImagePath = null;
@@ -163,7 +156,7 @@ namespace Restaurant.DAL
         {
             bool IsFound = false;
 
-            string Query = "SP_GetMenuItemByID";
+            string Query = "SP_GetMenuItemByCategoryID";
 
             using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
@@ -171,15 +164,15 @@ namespace Restaurant.DAL
                 {
                     Connection.Open();
                     Command.CommandType = CommandType.StoredProcedure;
-                    Command.Parameters.AddWithValue("@MenuItem", MenuItemID);
+                    Command.Parameters.AddWithValue("@CategoryID", CategoryID);
 
                     using (SqlDataReader Reader = Command.ExecuteReader())
                     {
                         if (Reader.Read())
                         {
                             IsFound = true;
-                            MenuItemID = (int)Reader["MenuItemID"];
-                            MenuItemName = (string)Reader["MenuItemName"];
+                            CategoryID = (int)Reader["CategoryID"];
+                            MenuItemName = (string)Reader["ItemName"];
                             Description = (string)Reader["Description"];
                             Price = (decimal)Reader["Price"];
                             if (Reader["ImagePath"] != null||DBNull.Value!=null)

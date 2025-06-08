@@ -23,7 +23,7 @@ namespace Restaurant.UI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-          
+            Text = "Restaurant Management System";
         }
     }
 }

@@ -46,8 +46,8 @@ namespace Restaurant.DAL
             }
             return Table;
         }
-        public static async Task<int>AddNewReservation(int PersonID, int TableID
-            , DateTime ReservationDate, bool Status)
+        public static async Task<int>AddNewReservation(int? PersonID, int? TableID
+            , DateTime? ReservationDate, bool? Status)
         {
             int ReservationID=0;
             string Query = "SP_InsertReservation";
@@ -79,6 +79,59 @@ namespace Restaurant.DAL
             return ReservationID;
         }
 
-       
+        public static async Task<bool>UpdateReservationStatus(int? ReservationID, bool? Status)
+        {
+            bool IsUpdated = false;
+            string Query = "SP_UpdateReservationStatus";
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    try
+                    {
+                        Command.CommandType = CommandType.StoredProcedure;
+                        await Connection.OpenAsync();
+                        Command.Parameters.AddWithValue("@ReservationID", ReservationID);
+                        Command.Parameters.AddWithValue("@Status", Status);
+                        int RowsAffected = await Command.ExecuteNonQueryAsync();
+                        if (RowsAffected > 0)
+                        {
+                            IsUpdated = true;
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            return IsUpdated;
+        }
+
+        public static async Task<bool>UpdateReservationDate(int? ReservationID, DateTime? NewDate)
+        {
+            int IsUpdated = 0;
+            string Query = "SP_UpdateReservationDate";
+            using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
+            {
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    try
+                    {
+                        Command.CommandType = CommandType.StoredProcedure;
+                        await Connection.OpenAsync();
+                        Command.Parameters.AddWithValue("@ReservationID", ReservationID);
+                        Command.Parameters.AddWithValue("@NewDate", NewDate);
+                        int RowsAffected = await Command.ExecuteNonQueryAsync();
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            return IsUpdated>0;
+        }
+
     }
 }

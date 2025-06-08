@@ -135,7 +135,7 @@ namespace Restaurant.DAL
                         {
                             IsFound = true;
                             CategoryName = (string)Reader["CategoryName"];
-                            IsAvailable = (Boolean)Reader["IsAvailable"];
+                            IsAvailable = (Boolean)Reader["IsAvaliable"];
 
                         }
 

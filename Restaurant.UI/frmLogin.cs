@@ -28,14 +28,15 @@ namespace Restaurant.UI
 
         private  async void btmSAVE_Click(object sender, EventArgs e)
         {
-
-            clsMenuItemsBL menuItemsBL = new clsMenuItemsBL();
-            menuItemsBL.MenuItemName = "Pepsi";
-            menuItemsBL.Description = "Added value";
+             clsMenuItemsBL menuItemsBL = new clsMenuItemsBL();
+           menuItemsBL= clsMenuItemsBL.Find(1);
+                menuItemsBL.MenuItemName = "XNXX    ";
+            menuItemsBL.Description = "Drink human";
             menuItemsBL.Price = 12;
             menuItemsBL.CategoryID = 1;
-
-
+            
+            if(await menuItemsBL.Save())
+                MessageBox.Show("Done");
         }
     }
 }
