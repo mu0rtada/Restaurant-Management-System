@@ -15,7 +15,7 @@ namespace Restaurant.DAL
         public static async Task<DataTable> GetAllOrders()
         {
             DataTable Table = new DataTable();
-            string Query = "select * from View_GetOrders";
+            string Query = "select * from View_GetOrders";//Add Query
 
             using (SqlConnection Connection = new SqlConnection(StrConnectionSetting.ConnectionString))
             {
