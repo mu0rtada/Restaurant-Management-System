@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainResto));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
             this.gunaElipsePanel2 = new Guna.UI.WinForms.GunaElipsePanel();
             this.btnUserInfo = new Guna.UI.WinForms.GunaImageButton();
@@ -52,8 +52,14 @@
             this.gunaElipse1 = new Guna.UI.WinForms.GunaElipse(this.components);
             this.tbHome = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.gunaSeparator2 = new Guna.UI.WinForms.GunaSeparator();
             this.lblTime = new System.Windows.Forms.Label();
             this.gunaElipsePanel7 = new Guna.UI.WinForms.GunaElipsePanel();
+            this.dgvRecentOrder = new Guna.UI.WinForms.GunaDataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -101,18 +107,13 @@
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.label14 = new System.Windows.Forms.Label();
             this.gunaDragControl1 = new Guna.UI.WinForms.GunaDragControl(this.components);
-            this.gunaSeparator2 = new Guna.UI.WinForms.GunaSeparator();
-            this.dgvRecentOrder = new Guna.UI.WinForms.GunaDataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ElipsfordgvOrderRecent = new Guna.UI.WinForms.GunaElipse(this.components);
             this.gunaElipsePanel1.SuspendLayout();
             this.gunaElipsePanel2.SuspendLayout();
             this.tbHome.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gunaElipsePanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRecentOrder)).BeginInit();
             this.gunaElipsePanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.gunaElipsePanel5.SuspendLayout();
@@ -131,7 +132,6 @@
             this.tabPage9.SuspendLayout();
             this.tabPage10.SuspendLayout();
             this.tabPage11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRecentOrder)).BeginInit();
             this.SuspendLayout();
             // 
             // gunaElipsePanel1
@@ -622,6 +622,14 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Home";
             // 
+            // gunaSeparator2
+            // 
+            this.gunaSeparator2.LineColor = System.Drawing.Color.Silver;
+            this.gunaSeparator2.Location = new System.Drawing.Point(4, 18);
+            this.gunaSeparator2.Name = "gunaSeparator2";
+            this.gunaSeparator2.Size = new System.Drawing.Size(51, 10);
+            this.gunaSeparator2.TabIndex = 24;
+            // 
             // lblTime
             // 
             this.lblTime.AutoSize = true;
@@ -645,6 +653,95 @@
             this.gunaElipsePanel7.Radius = 18;
             this.gunaElipsePanel7.Size = new System.Drawing.Size(655, 118);
             this.gunaElipsePanel7.TabIndex = 22;
+            // 
+            // dgvRecentOrder
+            // 
+            this.dgvRecentOrder.AllowUserToAddRows = false;
+            this.dgvRecentOrder.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.IndianRed;
+            this.dgvRecentOrder.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvRecentOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvRecentOrder.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(224)))));
+            this.dgvRecentOrder.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvRecentOrder.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvRecentOrder.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRecentOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvRecentOrder.ColumnHeadersHeight = 14;
+            this.dgvRecentOrder.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRecentOrder.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvRecentOrder.EnableHeadersVisualStyles = false;
+            this.dgvRecentOrder.GridColor = System.Drawing.Color.SteelBlue;
+            this.dgvRecentOrder.Location = new System.Drawing.Point(85, 15);
+            this.dgvRecentOrder.Name = "dgvRecentOrder";
+            this.dgvRecentOrder.ReadOnly = true;
+            this.dgvRecentOrder.RowHeadersVisible = false;
+            this.dgvRecentOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvRecentOrder.Size = new System.Drawing.Size(513, 81);
+            this.dgvRecentOrder.TabIndex = 16;
+            this.dgvRecentOrder.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
+            this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.IndianRed;
+            this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvRecentOrder.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(224)))));
+            this.dgvRecentOrder.ThemeStyle.GridColor = System.Drawing.Color.SteelBlue;
+            this.dgvRecentOrder.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvRecentOrder.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvRecentOrder.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
+            this.dgvRecentOrder.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvRecentOrder.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dgvRecentOrder.ThemeStyle.HeaderStyle.Height = 14;
+            this.dgvRecentOrder.ThemeStyle.ReadOnly = true;
+            this.dgvRecentOrder.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvRecentOrder.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvRecentOrder.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
+            this.dgvRecentOrder.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvRecentOrder.ThemeStyle.RowsStyle.Height = 22;
+            this.dgvRecentOrder.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvRecentOrder.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "OrderID";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Name";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Price";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Time";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // label25
             // 
@@ -714,7 +811,7 @@
             this.GaugeResult.ShowText = true;
             this.GaugeResult.Size = new System.Drawing.Size(233, 161);
             this.GaugeResult.TabIndex = 17;
-            this.GaugeResult.Value = 55;
+            this.GaugeResult.Value = 56;
             // 
             // gunaElipsePanel6
             // 
@@ -1245,102 +1342,6 @@
             // 
             this.gunaDragControl1.TargetControl = this;
             // 
-            // gunaSeparator2
-            // 
-            this.gunaSeparator2.LineColor = System.Drawing.Color.Silver;
-            this.gunaSeparator2.Location = new System.Drawing.Point(4, 18);
-            this.gunaSeparator2.Name = "gunaSeparator2";
-            this.gunaSeparator2.Size = new System.Drawing.Size(51, 10);
-            this.gunaSeparator2.TabIndex = 24;
-            // 
-            // dgvRecentOrder
-            // 
-            this.dgvRecentOrder.AllowUserToAddRows = false;
-            this.dgvRecentOrder.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvRecentOrder.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvRecentOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvRecentOrder.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(221)))));
-            this.dgvRecentOrder.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvRecentOrder.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRecentOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvRecentOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRecentOrder.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRecentOrder.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvRecentOrder.EnableHeadersVisualStyles = false;
-            this.dgvRecentOrder.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvRecentOrder.Location = new System.Drawing.Point(85, 15);
-            this.dgvRecentOrder.Name = "dgvRecentOrder";
-            this.dgvRecentOrder.ReadOnly = true;
-            this.dgvRecentOrder.RowHeadersVisible = false;
-            this.dgvRecentOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRecentOrder.Size = new System.Drawing.Size(513, 81);
-            this.dgvRecentOrder.TabIndex = 16;
-            this.dgvRecentOrder.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
-            this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.dgvRecentOrder.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(221)))));
-            this.dgvRecentOrder.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvRecentOrder.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dgvRecentOrder.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvRecentOrder.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
-            this.dgvRecentOrder.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvRecentOrder.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRecentOrder.ThemeStyle.HeaderStyle.Height = 14;
-            this.dgvRecentOrder.ThemeStyle.ReadOnly = true;
-            this.dgvRecentOrder.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvRecentOrder.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvRecentOrder.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
-            this.dgvRecentOrder.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvRecentOrder.ThemeStyle.RowsStyle.Height = 22;
-            this.dgvRecentOrder.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvRecentOrder.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "OrderID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Name";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Price";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Time";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
             // ElipsfordgvOrderRecent
             // 
             this.ElipsfordgvOrderRecent.Radius = 10;
@@ -1366,6 +1367,7 @@
             this.tabPage1.PerformLayout();
             this.gunaElipsePanel7.ResumeLayout(false);
             this.gunaElipsePanel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRecentOrder)).EndInit();
             this.gunaElipsePanel6.ResumeLayout(false);
             this.gunaElipsePanel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -1398,7 +1400,6 @@
             this.tabPage10.PerformLayout();
             this.tabPage11.ResumeLayout(false);
             this.tabPage11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRecentOrder)).EndInit();
             this.ResumeLayout(false);
 
         }
