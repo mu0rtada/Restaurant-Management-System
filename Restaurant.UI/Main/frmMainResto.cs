@@ -18,11 +18,10 @@ namespace Restaurant.UI.Main
         private void frmMainResto_Load(object sender, EventArgs e)
         {
             StartupFeature();
-
+            //Hello
             dgvRecentOrder.Rows.Add(1, "Murtada", 2343, DateTime.Now.ToShortDateString());
             dgvRecentOrder.Rows.Add(2, "Abbas", 536, DateTime.Now.ToShortDateString());
             dgvRecentOrder.Rows.Add(3, "Saif", 536, DateTime.Now.ToShortDateString());
-
 
         }
 
@@ -49,6 +48,7 @@ namespace Restaurant.UI.Main
             tbHome.Appearance = TabAppearance.FlatButtons;
             tbHome.ItemSize = new Size(0, 1);
             tbHome.SizeMode = TabSizeMode.Fixed;
+            label1.Text= "矃";
         }
 
        
@@ -66,7 +66,5 @@ namespace Restaurant.UI.Main
                 tbHome.SelectedIndex=TabNumber;
             
         }
-
-       
     }
 }

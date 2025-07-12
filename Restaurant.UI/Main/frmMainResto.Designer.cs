@@ -52,6 +52,12 @@
             this.gunaElipse1 = new Guna.UI.WinForms.GunaElipse(this.components);
             this.tbHome = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.gunaGroupBox1 = new Guna.UI.WinForms.GunaGroupBox();
+            this.gunaAdvenceButton4 = new Guna.UI.WinForms.GunaAdvenceButton();
+            this.gunaAdvenceButton5 = new Guna.UI.WinForms.GunaAdvenceButton();
+            this.gunaAdvenceButton6 = new Guna.UI.WinForms.GunaAdvenceButton();
+            this.label25 = new System.Windows.Forms.Label();
             this.gunaSeparator2 = new Guna.UI.WinForms.GunaSeparator();
             this.lblTime = new System.Windows.Forms.Label();
             this.gunaElipsePanel7 = new Guna.UI.WinForms.GunaElipsePanel();
@@ -60,7 +66,6 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.gunaSeparator1 = new Guna.UI.WinForms.GunaSeparator();
@@ -78,16 +83,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.gunaElipsePanel3 = new Guna.UI.WinForms.GunaElipsePanel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.gunaAdvenceButton3 = new Guna.UI.WinForms.GunaAdvenceButton();
-            this.gunaAdvenceButton2 = new Guna.UI.WinForms.GunaAdvenceButton();
-            this.gunaAdvenceButton1 = new Guna.UI.WinForms.GunaAdvenceButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -97,6 +94,7 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.gunaMetroTrackBar1 = new Guna.UI.WinForms.GunaMetroTrackBar();
             this.label10 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.label11 = new System.Windows.Forms.Label();
@@ -112,6 +110,7 @@
             this.gunaElipsePanel2.SuspendLayout();
             this.tbHome.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.gunaGroupBox1.SuspendLayout();
             this.gunaElipsePanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecentOrder)).BeginInit();
             this.gunaElipsePanel6.SuspendLayout();
@@ -120,9 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.gunaElipsePanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.gunaElipsePanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -602,6 +599,9 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.gunaGroupBox1);
+            this.tabPage1.Controls.Add(this.label25);
             this.tabPage1.Controls.Add(this.gunaSeparator2);
             this.tabPage1.Controls.Add(this.lblTime);
             this.tabPage1.Controls.Add(this.gunaElipsePanel7);
@@ -612,15 +612,151 @@
             this.tabPage1.Controls.Add(this.gunaElipsePanel6);
             this.tabPage1.Controls.Add(this.gunaElipsePanel5);
             this.tabPage1.Controls.Add(this.gunaElipsePanel4);
-            this.tabPage1.Controls.Add(this.gunaElipsePanel3);
             this.tabPage1.Controls.Add(this.pictureBox1);
-            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 18);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(712, 567);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Home";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("From Cartoon Blocks", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DarkRed;
+            this.label1.Location = new System.Drawing.Point(264, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(195, 39);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Restaurant";
+            // 
+            // gunaGroupBox1
+            // 
+            this.gunaGroupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.gunaGroupBox1.BaseColor = System.Drawing.Color.White;
+            this.gunaGroupBox1.BorderColor = System.Drawing.Color.Gainsboro;
+            this.gunaGroupBox1.BorderSize = 2;
+            this.gunaGroupBox1.Controls.Add(this.gunaAdvenceButton4);
+            this.gunaGroupBox1.Controls.Add(this.gunaAdvenceButton5);
+            this.gunaGroupBox1.Controls.Add(this.gunaAdvenceButton6);
+            this.gunaGroupBox1.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gunaGroupBox1.LineColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.gunaGroupBox1.LineTop = 0;
+            this.gunaGroupBox1.Location = new System.Drawing.Point(432, 222);
+            this.gunaGroupBox1.Name = "gunaGroupBox1";
+            this.gunaGroupBox1.Radius = 20;
+            this.gunaGroupBox1.Size = new System.Drawing.Size(260, 176);
+            this.gunaGroupBox1.TabIndex = 25;
+            this.gunaGroupBox1.Text = "Quick Action";
+            this.gunaGroupBox1.TextLocation = new System.Drawing.Point(10, 8);
+            this.gunaGroupBox1.UseTransfarantBackground = true;
+            // 
+            // gunaAdvenceButton4
+            // 
+            this.gunaAdvenceButton4.Animated = true;
+            this.gunaAdvenceButton4.AnimationHoverSpeed = 0.02F;
+            this.gunaAdvenceButton4.AnimationSpeed = 0.03F;
+            this.gunaAdvenceButton4.BackColor = System.Drawing.Color.Transparent;
+            this.gunaAdvenceButton4.BaseColor = System.Drawing.Color.WhiteSmoke;
+            this.gunaAdvenceButton4.BorderColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton4.CheckedBaseColor = System.Drawing.Color.Aquamarine;
+            this.gunaAdvenceButton4.CheckedBorderColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton4.CheckedForeColor = System.Drawing.Color.Gainsboro;
+            this.gunaAdvenceButton4.CheckedImage = global::Restaurant.UI.Properties.Resources.plus;
+            this.gunaAdvenceButton4.CheckedLineColor = System.Drawing.Color.FloralWhite;
+            this.gunaAdvenceButton4.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gunaAdvenceButton4.ForeColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton4.Image = global::Restaurant.UI.Properties.Resources.application__1_;
+            this.gunaAdvenceButton4.ImageSize = new System.Drawing.Size(20, 20);
+            this.gunaAdvenceButton4.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.gunaAdvenceButton4.Location = new System.Drawing.Point(14, 122);
+            this.gunaAdvenceButton4.Name = "gunaAdvenceButton4";
+            this.gunaAdvenceButton4.OnHoverBaseColor = System.Drawing.Color.DarkGray;
+            this.gunaAdvenceButton4.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton4.OnHoverForeColor = System.Drawing.Color.WhiteSmoke;
+            this.gunaAdvenceButton4.OnHoverImage = null;
+            this.gunaAdvenceButton4.OnHoverLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
+            this.gunaAdvenceButton4.OnPressedColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton4.Radius = 10;
+            this.gunaAdvenceButton4.Size = new System.Drawing.Size(231, 35);
+            this.gunaAdvenceButton4.TabIndex = 11;
+            this.gunaAdvenceButton4.Text = "Add Menu Item";
+            // 
+            // gunaAdvenceButton5
+            // 
+            this.gunaAdvenceButton5.Animated = true;
+            this.gunaAdvenceButton5.AnimationHoverSpeed = 0.02F;
+            this.gunaAdvenceButton5.AnimationSpeed = 0.03F;
+            this.gunaAdvenceButton5.BackColor = System.Drawing.Color.Transparent;
+            this.gunaAdvenceButton5.BaseColor = System.Drawing.Color.WhiteSmoke;
+            this.gunaAdvenceButton5.BorderColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton5.CheckedBaseColor = System.Drawing.Color.Aquamarine;
+            this.gunaAdvenceButton5.CheckedBorderColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton5.CheckedForeColor = System.Drawing.Color.Gainsboro;
+            this.gunaAdvenceButton5.CheckedImage = global::Restaurant.UI.Properties.Resources.plus;
+            this.gunaAdvenceButton5.CheckedLineColor = System.Drawing.Color.FloralWhite;
+            this.gunaAdvenceButton5.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gunaAdvenceButton5.ForeColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton5.Image = global::Restaurant.UI.Properties.Resources.table;
+            this.gunaAdvenceButton5.ImageSize = new System.Drawing.Size(15, 15);
+            this.gunaAdvenceButton5.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.gunaAdvenceButton5.Location = new System.Drawing.Point(14, 81);
+            this.gunaAdvenceButton5.Name = "gunaAdvenceButton5";
+            this.gunaAdvenceButton5.OnHoverBaseColor = System.Drawing.Color.DarkGray;
+            this.gunaAdvenceButton5.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton5.OnHoverForeColor = System.Drawing.Color.WhiteSmoke;
+            this.gunaAdvenceButton5.OnHoverImage = null;
+            this.gunaAdvenceButton5.OnHoverLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
+            this.gunaAdvenceButton5.OnPressedColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton5.Radius = 10;
+            this.gunaAdvenceButton5.Size = new System.Drawing.Size(231, 35);
+            this.gunaAdvenceButton5.TabIndex = 10;
+            this.gunaAdvenceButton5.Text = "Reserved Table";
+            // 
+            // gunaAdvenceButton6
+            // 
+            this.gunaAdvenceButton6.Animated = true;
+            this.gunaAdvenceButton6.AnimationHoverSpeed = 0.02F;
+            this.gunaAdvenceButton6.AnimationSpeed = 0.03F;
+            this.gunaAdvenceButton6.BackColor = System.Drawing.Color.Transparent;
+            this.gunaAdvenceButton6.BaseColor = System.Drawing.Color.WhiteSmoke;
+            this.gunaAdvenceButton6.BorderColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton6.CheckedBaseColor = System.Drawing.Color.Aquamarine;
+            this.gunaAdvenceButton6.CheckedBorderColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton6.CheckedForeColor = System.Drawing.Color.Gainsboro;
+            this.gunaAdvenceButton6.CheckedImage = global::Restaurant.UI.Properties.Resources.plus;
+            this.gunaAdvenceButton6.CheckedLineColor = System.Drawing.Color.FloralWhite;
+            this.gunaAdvenceButton6.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gunaAdvenceButton6.ForeColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton6.Image = global::Restaurant.UI.Properties.Resources.plus;
+            this.gunaAdvenceButton6.ImageSize = new System.Drawing.Size(15, 15);
+            this.gunaAdvenceButton6.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.gunaAdvenceButton6.Location = new System.Drawing.Point(14, 40);
+            this.gunaAdvenceButton6.Name = "gunaAdvenceButton6";
+            this.gunaAdvenceButton6.OnHoverBaseColor = System.Drawing.Color.DarkGray;
+            this.gunaAdvenceButton6.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton6.OnHoverForeColor = System.Drawing.Color.WhiteSmoke;
+            this.gunaAdvenceButton6.OnHoverImage = null;
+            this.gunaAdvenceButton6.OnHoverLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
+            this.gunaAdvenceButton6.OnPressedColor = System.Drawing.Color.Black;
+            this.gunaAdvenceButton6.Radius = 10;
+            this.gunaAdvenceButton6.Size = new System.Drawing.Size(231, 35);
+            this.gunaAdvenceButton6.TabIndex = 9;
+            this.gunaAdvenceButton6.Text = "New Order";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.Color.Transparent;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.DarkGray;
+            this.label25.Location = new System.Drawing.Point(2, 25);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(179, 39);
+            this.label25.TabIndex = 15;
+            this.label25.Text = "💡 Tip:\r\nAlways confirm the payment method \r\nbefore submitting.";
             // 
             // gunaSeparator2
             // 
@@ -646,7 +782,6 @@
             // 
             this.gunaElipsePanel7.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(221)))));
             this.gunaElipsePanel7.Controls.Add(this.dgvRecentOrder);
-            this.gunaElipsePanel7.Controls.Add(this.label25);
             this.gunaElipsePanel7.Controls.Add(this.label24);
             this.gunaElipsePanel7.Location = new System.Drawing.Point(40, 433);
             this.gunaElipsePanel7.Name = "gunaElipsePanel7";
@@ -656,17 +791,23 @@
             // 
             // dgvRecentOrder
             // 
+            this.dgvRecentOrder.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.dgvRecentOrder.AllowUserToAddRows = false;
             this.dgvRecentOrder.AllowUserToDeleteRows = false;
+            this.dgvRecentOrder.AllowUserToResizeColumns = false;
+            this.dgvRecentOrder.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.IndianRed;
             this.dgvRecentOrder.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvRecentOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRecentOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRecentOrder.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(224)))));
-            this.dgvRecentOrder.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvRecentOrder.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvRecentOrder.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvRecentOrder.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DarkSlateBlue;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -687,14 +828,20 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRecentOrder.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvRecentOrder.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvRecentOrder.EnableHeadersVisualStyles = false;
-            this.dgvRecentOrder.GridColor = System.Drawing.Color.SteelBlue;
-            this.dgvRecentOrder.Location = new System.Drawing.Point(85, 15);
+            this.dgvRecentOrder.GridColor = System.Drawing.Color.Teal;
+            this.dgvRecentOrder.Location = new System.Drawing.Point(95, 17);
             this.dgvRecentOrder.Name = "dgvRecentOrder";
             this.dgvRecentOrder.ReadOnly = true;
+            this.dgvRecentOrder.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dgvRecentOrder.RowHeadersVisible = false;
+            this.dgvRecentOrder.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(221)))));
+            this.dgvRecentOrder.RowTemplate.ReadOnly = true;
+            this.dgvRecentOrder.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRecentOrder.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvRecentOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRecentOrder.Size = new System.Drawing.Size(513, 81);
+            this.dgvRecentOrder.Size = new System.Drawing.Size(513, 85);
             this.dgvRecentOrder.TabIndex = 16;
             this.dgvRecentOrder.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.IndianRed;
@@ -703,8 +850,8 @@
             this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
             this.dgvRecentOrder.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.dgvRecentOrder.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(224)))));
-            this.dgvRecentOrder.ThemeStyle.GridColor = System.Drawing.Color.SteelBlue;
-            this.dgvRecentOrder.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvRecentOrder.ThemeStyle.GridColor = System.Drawing.Color.Teal;
+            this.dgvRecentOrder.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.dgvRecentOrder.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvRecentOrder.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
             this.dgvRecentOrder.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.WhiteSmoke;
@@ -743,29 +890,17 @@
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(8, 81);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(304, 30);
-            this.label25.TabIndex = 15;
-            this.label25.Text = "💡 Tip:\r\nAlways confirm the payment method before submitting.";
-            // 
             // label24
             // 
             this.label24.AutoSize = true;
             this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Font = new System.Drawing.Font("MV Boli", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(25, 7);
+            this.label24.Location = new System.Drawing.Point(2, 8);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(36, 27);
+            this.label24.Size = new System.Drawing.Size(76, 16);
             this.label24.TabIndex = 11;
-            this.label24.Text = "00";
+            this.label24.Text = "Recent Order";
             // 
             // label23
             // 
@@ -891,7 +1026,7 @@
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(112, 9);
+            this.label20.Location = new System.Drawing.Point(112, 12);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(36, 27);
             this.label20.TabIndex = 13;
@@ -938,7 +1073,7 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(96, 7);
+            this.label17.Location = new System.Drawing.Point(96, 8);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(36, 27);
             this.label17.TabIndex = 10;
@@ -954,125 +1089,6 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
-            // gunaElipsePanel3
-            // 
-            this.gunaElipsePanel3.BackColor = System.Drawing.Color.Transparent;
-            this.gunaElipsePanel3.BaseColor = System.Drawing.Color.White;
-            this.gunaElipsePanel3.Controls.Add(this.label16);
-            this.gunaElipsePanel3.Controls.Add(this.gunaAdvenceButton3);
-            this.gunaElipsePanel3.Controls.Add(this.gunaAdvenceButton2);
-            this.gunaElipsePanel3.Controls.Add(this.gunaAdvenceButton1);
-            this.gunaElipsePanel3.Location = new System.Drawing.Point(482, 215);
-            this.gunaElipsePanel3.Name = "gunaElipsePanel3";
-            this.gunaElipsePanel3.Radius = 15;
-            this.gunaElipsePanel3.Size = new System.Drawing.Size(216, 149);
-            this.gunaElipsePanel3.TabIndex = 11;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(4, 8);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(93, 17);
-            this.label16.TabIndex = 9;
-            this.label16.Text = "Quick Actions";
-            // 
-            // gunaAdvenceButton3
-            // 
-            this.gunaAdvenceButton3.Animated = true;
-            this.gunaAdvenceButton3.AnimationHoverSpeed = 0.02F;
-            this.gunaAdvenceButton3.AnimationSpeed = 0.03F;
-            this.gunaAdvenceButton3.BackColor = System.Drawing.Color.Transparent;
-            this.gunaAdvenceButton3.BaseColor = System.Drawing.Color.WhiteSmoke;
-            this.gunaAdvenceButton3.BorderColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton3.CheckedBaseColor = System.Drawing.Color.Aquamarine;
-            this.gunaAdvenceButton3.CheckedBorderColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton3.CheckedForeColor = System.Drawing.Color.Gainsboro;
-            this.gunaAdvenceButton3.CheckedImage = global::Restaurant.UI.Properties.Resources.plus;
-            this.gunaAdvenceButton3.CheckedLineColor = System.Drawing.Color.FloralWhite;
-            this.gunaAdvenceButton3.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaAdvenceButton3.ForeColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton3.Image = global::Restaurant.UI.Properties.Resources.application__1_;
-            this.gunaAdvenceButton3.ImageSize = new System.Drawing.Size(20, 20);
-            this.gunaAdvenceButton3.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.gunaAdvenceButton3.Location = new System.Drawing.Point(3, 108);
-            this.gunaAdvenceButton3.Name = "gunaAdvenceButton3";
-            this.gunaAdvenceButton3.OnHoverBaseColor = System.Drawing.Color.DarkGray;
-            this.gunaAdvenceButton3.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton3.OnHoverForeColor = System.Drawing.Color.WhiteSmoke;
-            this.gunaAdvenceButton3.OnHoverImage = null;
-            this.gunaAdvenceButton3.OnHoverLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
-            this.gunaAdvenceButton3.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton3.Radius = 10;
-            this.gunaAdvenceButton3.Size = new System.Drawing.Size(210, 31);
-            this.gunaAdvenceButton3.TabIndex = 8;
-            this.gunaAdvenceButton3.Text = "Add Menu Item";
-            // 
-            // gunaAdvenceButton2
-            // 
-            this.gunaAdvenceButton2.Animated = true;
-            this.gunaAdvenceButton2.AnimationHoverSpeed = 0.02F;
-            this.gunaAdvenceButton2.AnimationSpeed = 0.03F;
-            this.gunaAdvenceButton2.BackColor = System.Drawing.Color.Transparent;
-            this.gunaAdvenceButton2.BaseColor = System.Drawing.Color.WhiteSmoke;
-            this.gunaAdvenceButton2.BorderColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton2.CheckedBaseColor = System.Drawing.Color.Aquamarine;
-            this.gunaAdvenceButton2.CheckedBorderColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton2.CheckedForeColor = System.Drawing.Color.Gainsboro;
-            this.gunaAdvenceButton2.CheckedImage = global::Restaurant.UI.Properties.Resources.plus;
-            this.gunaAdvenceButton2.CheckedLineColor = System.Drawing.Color.FloralWhite;
-            this.gunaAdvenceButton2.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaAdvenceButton2.ForeColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton2.Image = global::Restaurant.UI.Properties.Resources.table;
-            this.gunaAdvenceButton2.ImageSize = new System.Drawing.Size(15, 15);
-            this.gunaAdvenceButton2.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.gunaAdvenceButton2.Location = new System.Drawing.Point(3, 72);
-            this.gunaAdvenceButton2.Name = "gunaAdvenceButton2";
-            this.gunaAdvenceButton2.OnHoverBaseColor = System.Drawing.Color.DarkGray;
-            this.gunaAdvenceButton2.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton2.OnHoverForeColor = System.Drawing.Color.WhiteSmoke;
-            this.gunaAdvenceButton2.OnHoverImage = null;
-            this.gunaAdvenceButton2.OnHoverLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
-            this.gunaAdvenceButton2.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton2.Radius = 10;
-            this.gunaAdvenceButton2.Size = new System.Drawing.Size(210, 31);
-            this.gunaAdvenceButton2.TabIndex = 7;
-            this.gunaAdvenceButton2.Text = "Reserved Table";
-            // 
-            // gunaAdvenceButton1
-            // 
-            this.gunaAdvenceButton1.Animated = true;
-            this.gunaAdvenceButton1.AnimationHoverSpeed = 0.02F;
-            this.gunaAdvenceButton1.AnimationSpeed = 0.03F;
-            this.gunaAdvenceButton1.BackColor = System.Drawing.Color.Transparent;
-            this.gunaAdvenceButton1.BaseColor = System.Drawing.Color.WhiteSmoke;
-            this.gunaAdvenceButton1.BorderColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton1.CheckedBaseColor = System.Drawing.Color.Aquamarine;
-            this.gunaAdvenceButton1.CheckedBorderColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton1.CheckedForeColor = System.Drawing.Color.Gainsboro;
-            this.gunaAdvenceButton1.CheckedImage = global::Restaurant.UI.Properties.Resources.plus;
-            this.gunaAdvenceButton1.CheckedLineColor = System.Drawing.Color.FloralWhite;
-            this.gunaAdvenceButton1.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaAdvenceButton1.ForeColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton1.Image = global::Restaurant.UI.Properties.Resources.plus;
-            this.gunaAdvenceButton1.ImageSize = new System.Drawing.Size(15, 15);
-            this.gunaAdvenceButton1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.gunaAdvenceButton1.Location = new System.Drawing.Point(3, 36);
-            this.gunaAdvenceButton1.Name = "gunaAdvenceButton1";
-            this.gunaAdvenceButton1.OnHoverBaseColor = System.Drawing.Color.DarkGray;
-            this.gunaAdvenceButton1.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton1.OnHoverForeColor = System.Drawing.Color.WhiteSmoke;
-            this.gunaAdvenceButton1.OnHoverImage = null;
-            this.gunaAdvenceButton1.OnHoverLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
-            this.gunaAdvenceButton1.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaAdvenceButton1.Radius = 10;
-            this.gunaAdvenceButton1.Size = new System.Drawing.Size(210, 31);
-            this.gunaAdvenceButton1.TabIndex = 6;
-            this.gunaAdvenceButton1.Text = "New Order";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -1083,53 +1099,15 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("From Cartoon Blocks", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.DarkRed;
-            this.label1.Location = new System.Drawing.Point(264, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(195, 39);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Restaurant";
-            // 
             // tabPage2
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.Turquoise;
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabPage2.Location = new System.Drawing.Point(4, 18);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(712, 567);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tables";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("From Cartoon Blocks", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.DarkRed;
-            this.label3.Location = new System.Drawing.Point(259, 264);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(195, 39);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Restaurant";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("From Cartoon Blocks", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.DarkRed;
-            this.label2.Location = new System.Drawing.Point(250, 276);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(195, 39);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Restaurant";
             // 
             // tabPage3
             // 
@@ -1225,6 +1203,7 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.gunaMetroTrackBar1);
             this.tabPage7.Controls.Add(this.label10);
             this.tabPage7.Location = new System.Drawing.Point(4, 18);
             this.tabPage7.Name = "tabPage7";
@@ -1233,6 +1212,18 @@
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Employees";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // gunaMetroTrackBar1
+            // 
+            this.gunaMetroTrackBar1.Location = new System.Drawing.Point(62, 311);
+            this.gunaMetroTrackBar1.Name = "gunaMetroTrackBar1";
+            this.gunaMetroTrackBar1.Size = new System.Drawing.Size(100, 23);
+            this.gunaMetroTrackBar1.TabIndex = 6;
+            this.gunaMetroTrackBar1.TrackColor = System.Drawing.Color.DimGray;
+            this.gunaMetroTrackBar1.TrackHoverColor = System.Drawing.Color.GreenYellow;
+            this.gunaMetroTrackBar1.TrackIdleColor = System.Drawing.Color.Silver;
+            this.gunaMetroTrackBar1.TrackPressedColor = System.Drawing.Color.Black;
+            this.gunaMetroTrackBar1.Value = 12;
             // 
             // label10
             // 
@@ -1365,6 +1356,7 @@
             this.tbHome.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.gunaGroupBox1.ResumeLayout(false);
             this.gunaElipsePanel7.ResumeLayout(false);
             this.gunaElipsePanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecentOrder)).EndInit();
@@ -1377,11 +1369,7 @@
             this.gunaElipsePanel4.ResumeLayout(false);
             this.gunaElipsePanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.gunaElipsePanel3.ResumeLayout(false);
-            this.gunaElipsePanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
@@ -1421,8 +1409,6 @@
         private Guna.UI.WinForms.GunaElipsePanel gunaElipsePanel2;
         private System.Windows.Forms.TabControl tbHome;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private Guna.UI.WinForms.GunaDragControl gunaDragControl1;
         private Guna.UI.WinForms.GunaImageButton btnLogout;
@@ -1449,17 +1435,12 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private Guna.UI.WinForms.GunaElipsePanel gunaElipsePanel3;
         private Guna.UI.WinForms.GunaElipsePanel gunaElipsePanel4;
         private Guna.UI.WinForms.GunaElipsePanel gunaElipsePanel6;
         private Guna.UI.WinForms.GunaElipsePanel gunaElipsePanel5;
-        private Guna.UI.WinForms.GunaAdvenceButton gunaAdvenceButton1;
-        private Guna.UI.WinForms.GunaAdvenceButton gunaAdvenceButton3;
-        private Guna.UI.WinForms.GunaAdvenceButton gunaAdvenceButton2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -1481,5 +1462,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private Guna.UI.WinForms.GunaElipse ElipsfordgvOrderRecent;
+        private Guna.UI.WinForms.GunaMetroTrackBar gunaMetroTrackBar1;
+        private Guna.UI.WinForms.GunaGroupBox gunaGroupBox1;
+        private Guna.UI.WinForms.GunaAdvenceButton gunaAdvenceButton4;
+        private Guna.UI.WinForms.GunaAdvenceButton gunaAdvenceButton5;
+        private Guna.UI.WinForms.GunaAdvenceButton gunaAdvenceButton6;
     }
 }
