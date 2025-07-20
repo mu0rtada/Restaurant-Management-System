@@ -80,6 +80,6 @@ namespace Restaurant.BLL
         {
             return await clsTableDL.IsTableAvailable(TableID);
         }
-
+        
     }
 }

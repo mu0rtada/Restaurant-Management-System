@@ -40,5 +40,6 @@ namespace Library_Utility
             return IsMatch(pattern, email);
         }
 
+
     }
 }

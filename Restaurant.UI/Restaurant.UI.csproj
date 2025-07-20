@@ -80,6 +80,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Main\ctrl_MenuItemView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Main\ctrl_MenuItemView.Designer.cs">
+      <DependentUpon>ctrl_MenuItemView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\ctrl_TablesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Main\ctrl_TablesView.Designer.cs">
+      <DependentUpon>ctrl_TablesView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +111,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\ctrl_MenuItemView.resx">
+      <DependentUpon>ctrl_MenuItemView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\ctrl_TablesView.resx">
+      <DependentUpon>ctrl_TablesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -520,6 +538,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dollar-symbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chair.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chocolate lava cake vector illustration isolated on white background _ Premium AI-generated vector.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cake.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
